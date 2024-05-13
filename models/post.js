@@ -8,6 +8,7 @@ const PostSchema = new Schema({
   body: { type: String, required: true },
   author: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
   date: { type: Date, required: true },
+  edited: { type: Date },
   published: { type: Boolean, required: true },
 });
 
