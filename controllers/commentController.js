@@ -4,10 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 module.exports.create_comment_post = [
-  body('body', 'Comment must not be empty')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body('body', 'Comment must not be empty').trim().notEmpty().escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);

@@ -15,8 +15,8 @@ module.exports.posts = asyncHandler(async (req, res, next) => {
 });
 
 module.exports.create_post = [
-  body('title', 'Title must not be empty').trim().isLength({ min: 1 }).escape(),
-  body('body', 'Body must not be empty').trim().isLength({ min: 1 }).escape(),
+  body('title', 'Title must not be empty').trim().notEmpty().escape(),
+  body('body', 'Body must not be empty').trim().notEmpty().escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
@@ -39,8 +39,8 @@ module.exports.create_post = [
 ];
 
 module.exports.edit_post = [
-  body('title', 'Title must not be empty').trim().isLength({ min: 1 }).escape(),
-  body('body', 'Body must not be empty').trim().isLength({ min: 1 }).escape(),
+  body('title', 'Title must not be empty').trim().notEmpty().escape(),
+  body('body', 'Body must not be empty').trim().notEmpty().escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);

@@ -8,14 +8,8 @@ module.exports.login_post = asyncHandler(async (req, res, next) => {
 });
 
 module.exports.sign_up_post = [
-  body('first_name', 'First name must not be empty')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('last_name', 'Last name must not be empty')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body('first_name', 'First name must not be empty').trim().notEmpty().escape(),
+  body('last_name', 'Last name must not be empty').trim().notEmpty().escape(),
   body('username', 'Username must be an email')
     .trim()
     .custom(async (value) => {
