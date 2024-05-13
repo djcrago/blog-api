@@ -6,23 +6,15 @@ const comment_controller = require('../controllers/commentController');
 
 router.get('/', post_controller.posts);
 
-router.post('/create-post', post_controller.create_post_post);
+router.post('/create-post', post_controller.create_post);
 
-router.get('/edit-post/:postid', post_controller.edit_post_get);
+router.post('/edit-post/:postid', post_controller.edit_post);
 
-router.post('/edit-post/:postid', post_controller.edit_post_post);
+router.post('/delete-post/:postid', post_controller.delete_post);
 
-router.get('/delete-post/:postid', post_controller.delete_post_get);
+router.post('/publish-post/:postid', post_controller.publish_post);
 
-router.post('/delete-post/:postid', post_controller.delete_post_post);
-
-router.get('/publish-post/:postid', post_controller.publish_post_get);
-
-router.post('/publish-post/:postid', post_controller.publish_post_post);
-
-router.get('/unpublish-post/:postid', post_controller.unpublish_post_get);
-
-router.post('/unpublish-post/:postid', post_controller.unpublish_post_post);
+router.post('/unpublish-post/:postid', post_controller.unpublish_post);
 
 router.get('/:postid', post_controller.post_detail);
 
