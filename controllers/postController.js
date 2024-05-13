@@ -83,9 +83,9 @@ module.exports.unpublish_post = asyncHandler(async (req, res, next) => {
 module.exports.post_detail = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(req.params.postid).populate('author').exec();
 
-  if (post) {
-    res.json(post);
-  } else {
+  if (!post) {
     res.status(404).json({ message: 'post not found' });
+  } else {
+    res.json(post);
   }
 });
