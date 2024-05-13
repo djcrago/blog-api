@@ -9,7 +9,7 @@ module.exports.create_comment_post = [
     .isLength({ min: 1 })
     .escape(),
 
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
     const comment = new Comment({
@@ -27,7 +27,7 @@ module.exports.create_comment_post = [
   }),
 ];
 
-module.exports.delete_comment_post = asyncHandler(async (req, res) => {
+module.exports.delete_comment_post = asyncHandler(async (req, res, next) => {
   await Comment.findByIdAndDelete(req.params.commentid);
   res.json({ message: 'comment deleted successfully' });
 });
