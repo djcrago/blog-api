@@ -4,7 +4,15 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 module.exports.login_post = asyncHandler(async (req, res, next) => {
-  res.json({ message: 'NOT IMPLEMENTED: Login post' });
+  const user = User.findOne({ username: req.body.username }).exec();
+
+  const passwordsMatch = user.password === req.body.password;
+
+  if (!passwordsMatch) {
+    res.status(400).json({ message: 'incorrect password' });
+  } else {
+    res.json({ message: 'user logged in successfully' });
+  }
 });
 
 module.exports.sign_up_post = [
