@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
   body: { type: String, required: true },
   date: { type: Date, required: true },
+  post: { type: mongoose.Types.ObjectId, ref: 'Post', required: true },
 });
 
 CommentSchema.virtual('url').get(function () {
