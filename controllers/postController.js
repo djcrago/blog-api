@@ -5,20 +5,18 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
-module.exports.index = asyncHandler(async (req, res, next) => {
-  res.json({ message: 'NOT IMPLEMENTED: Index' });
-});
-
 module.exports.posts = asyncHandler(async (req, res, next) => {
-  const allPosts = await Post.find().sort({ date: -1 }).exec();
+  const allPosts = await Post.find()
+    .sort({ date: -1 })
+    .populate('author')
+    .exec();
 
   res.json(allPosts);
 });
 
-module.exports.create_post_post = [
-  body('title', 'Post must have a title').trim().isLength({ min: 1 }).escape(),
-  body('body', 'Post must have a body').trim().isLength({ min: 1 }).escape(),
-  body('published').notEmpty().escape(),
+module.exports.create_post = [
+  body('title', 'Title must not be empty').trim().isLength({ min: 1 }).escape(),
+  body('body', 'Body must not be empty').trim().isLength({ min: 1 }).escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
@@ -28,123 +26,66 @@ module.exports.create_post_post = [
       body: req.body.body,
       author: res.locals.currentUser._id,
       date: Date.now(),
-      published: req.body.published,
+      published: false,
     });
 
     if (!errors.isEmpty()) {
-      res.json({ post, errors: errors.array() });
+      res.status(400).json({ post, errors: errors.array() });
     } else {
       await post.save();
-      res.json({ message: 'Success' });
+      res.status(201).json({ post, message: 'post created successfully' });
     }
   }),
 ];
 
-module.exports.edit_post_get = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).exec();
-
-  if (post !== null) {
-    res.json(post);
-  } else {
-    res.status(404).json({ message: 'Post not found' });
-  }
-});
-
-module.exports.edit_post_post = [
-  body('title', 'Post must have a title').trim().isLength({ min: 1 }).escape(),
-  body('body', 'Post must have a body').trim().isLength({ min: 1 }).escape(),
-  body('published').notEmpty().escape(),
+module.exports.edit_post = [
+  body('title', 'Title must not be empty').trim().isLength({ min: 1 }).escape(),
+  body('body', 'Body must not be empty').trim().isLength({ min: 1 }).escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
-    const post = new Post({
-      title: req.body.title,
-      body: req.body.body,
-      author: res.locals.currentUser._id,
-      date: Date.now(),
-      published: req.body.published,
-      _id: req.params.postid,
-    });
-
     if (!errors.isEmpty()) {
-      res.json({ post, errors: errors.array() });
+      res.status(400).json({
+        post: { title: req.body.title, body: req.body.body },
+        errors: errors.array(),
+      });
     } else {
-      await Post.findByIdAndUpdate(req.params.postid, post, {});
-      res.json({ message: 'Success' });
+      await Post.findByIdAndUpdate(
+        req.params.postid,
+        {
+          title: req.body.title,
+          body: req.body.body,
+          edited: Date.now(),
+        },
+        {}
+      );
+      res.json({ message: 'post edited successfully' });
     }
   }),
 ];
 
-module.exports.delete_post_get = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).exec();
-
-  if (post !== null) {
-    res.json(post);
-  } else {
-    res.status(404).json({ message: 'Post not found' });
-  }
-});
-
-module.exports.delete_post_post = asyncHandler(async (req, res, next) => {
+module.exports.delete_post = asyncHandler(async (req, res, next) => {
   await Post.findByIdAndDelete(req.params.postid);
-  res.json({ message: 'Success' });
+  res.json({ message: 'post deleted successfully' });
 });
 
-module.exports.publish_post_get = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).exec();
-
-  if (post !== null) {
-    res.json(post);
-  } else {
-    res.status(404).json({ message: 'Post not found' });
-  }
+module.exports.publish_post = asyncHandler(async (req, res, next) => {
+  await Post.findByIdAndUpdate(req.params.postid, { published: true }, {});
+  res.json({ message: 'post published successfully' });
 });
 
-module.exports.publish_post_post = asyncHandler(async (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    body: req.body.body,
-    author: req.body.author,
-    date: Date.now(),
-    published: true,
-    _id: req.params.postid,
-  });
-
-  await Post.findByIdAndUpdate(req.params.postid, post, {});
-  res.json(post);
-});
-
-module.exports.unpublish_post_get = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).exec();
-
-  if (post !== null) {
-    res.json(post);
-  } else {
-    res.status(404).json({ message: 'Post not found' });
-  }
-});
-
-module.exports.unpublish_post_post = asyncHandler(async (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    body: req.body.body,
-    author: req.body.author,
-    date: Date.now(),
-    published: false,
-    _id: req.params.postid,
-  });
-
-  await Post.findByIdAndUpdate(req.params.postid, post, {});
-  res.json(post);
+module.exports.unpublish_post = asyncHandler(async (req, res, next) => {
+  await Post.findByIdAndUpdate(req.params.postid, { published: false }, {});
+  res.json({ message: 'post unpublished successfully' });
 });
 
 module.exports.post_detail = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).exec();
+  const post = await Post.findById(req.params.postid).populate('author').exec();
 
-  if (post !== null) {
+  if (post) {
     res.json(post);
   } else {
-    res.status(404).json({ message: 'Post not found' });
+    res.status(404).json({ message: 'post not found' });
   }
 });
