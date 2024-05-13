@@ -13,6 +13,7 @@ const limiter = RateLimit({
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
+const postRouter = require('./routes/posts');
 const usersRouter = require('./routes/users');
 
 const app = express();
@@ -37,12 +38,12 @@ mongoose.set('strictQuery', false);
 const mongoDB = process.env.MONGODB_URL;
 
 main().catch((err) => console.log(err));
-
 async function main() {
   await mongoose.connect(mongoDB);
 }
 
 app.use('/', indexRouter);
+app.use('/posts', postRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
