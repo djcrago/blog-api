@@ -14,9 +14,8 @@ module.exports.sign_up_post = [
     .trim()
     .custom(async (value) => {
       const userExists = await User.findOne({ username: value }).exec();
-
       if (userExists) {
-        throw new Error('Email is already in use');
+        throw new Error('Email already in use');
       }
     })
     .isLength({ min: 4 })
@@ -29,8 +28,8 @@ module.exports.sign_up_post = [
     .escape(),
   body('password_confirm', 'Passwords do not match')
     .trim()
-    .custom((password_confirm, { req }) => {
-      return req.body.password === password_confirm;
+    .custom(({ req }) => {
+      return req.body.password_confirm === req.body.password;
     }),
 
   asyncHandler(async (req, res, next) => {
@@ -47,7 +46,7 @@ module.exports.sign_up_post = [
       res.status(400).json({ user, errors: errors.array() });
     } else {
       await user.save();
-      res.json({ message: 'Success' });
+      res.json({ message: 'user created successfully' });
     }
   }),
 ];
