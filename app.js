@@ -2,9 +2,6 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 
-// User model is utilized by passport
-const User = require('./models/user');
-
 // Require routers
 const indexRouter = require('./routes/index');
 const postRouter = require('./routes/posts');
@@ -12,11 +9,10 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-// Passportjs is for authentication
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+// User model is utilized by passport
+const User = require('./models/user');
 
-const options = {};
+// Passportjs is for authentication
 
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -67,7 +63,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: res.locals.error });
 });
 
 module.exports = app;
