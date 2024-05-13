@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
-module.exports.create_comment_post = [
+module.exports.create_comment = [
   body('body', 'Comment must not be empty').trim().notEmpty().escape(),
 
   asyncHandler(async (req, res, next) => {
@@ -24,7 +24,7 @@ module.exports.create_comment_post = [
   }),
 ];
 
-module.exports.delete_comment_post = asyncHandler(async (req, res, next) => {
+module.exports.delete_comment = asyncHandler(async (req, res, next) => {
   await Comment.findByIdAndDelete(req.params.commentid);
   res.json({ message: 'comment deleted successfully' });
 });

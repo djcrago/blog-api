@@ -18,11 +18,11 @@ router.post('/unpublish-post/:postid', post_controller.unpublish_post);
 
 router.get('/:postid', post_controller.post_detail);
 
-router.post('/:postid/create-comment', comment_controller.create_comment_post);
+router.post('/:postid/create-comment', comment_controller.create_comment);
 
 router.post(
   '/:postid/delete-comment/:commentid',
-  comment_controller.delete_comment_post
+  comment_controller.delete_comment
 );
 
 module.exports = router;

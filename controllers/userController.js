@@ -3,7 +3,7 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
-module.exports.login_post = asyncHandler(async (req, res, next) => {
+module.exports.login = asyncHandler(async (req, res, next) => {
   const user = User.findOne({ username: req.body.username }).exec();
 
   const passwordsMatch = user.password === req.body.password;
@@ -15,7 +15,7 @@ module.exports.login_post = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports.sign_up_post = [
+module.exports.sign_up = [
   body('first_name', 'First name must not be empty').trim().notEmpty().escape(),
   body('last_name', 'Last name must not be empty').trim().notEmpty().escape(),
   body('username', 'Username must be an email')
