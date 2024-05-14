@@ -1,5 +1,6 @@
 import fetchPostComments from './fetchPostComments.js';
 import { DateTime } from './node_modules/luxon/src/luxon.js';
+import renderFullPost from './renderFullPost.js';
 
 export default async function createCommentsSection(post) {
   const commentsSection = document.createElement('div');
@@ -29,28 +30,28 @@ export default async function createCommentsSection(post) {
     commentsSection.appendChild(commentElement);
   });
 
-  const formContainer = document.createElement('div');
+  //   const formContainer = document.createElement('div');
 
-  const formTitle = document.createElement('h4');
-  formTitle.textContent = 'Write a new comment';
-  formContainer.appendChild(formTitle);
+  //   const formTitle = document.createElement('h4');
+  //   formTitle.textContent = 'Write a new comment';
+  //   formContainer.appendChild(formTitle);
 
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = `http://127.0.0.1:3000/posts/${post._id}/create-comment`;
+  //   const form = document.createElement('form');
+  //   form.action = `http://127.0.0.1:3000/posts/${post._id}/create-comment`;
+  //   form.method = 'POST';
 
-  const body = document.createElement('input');
-  body.name = 'body';
-  form.appendChild(body);
+  //   const body = document.createElement('input');
+  //   body.name = 'body';
+  //   form.appendChild(body);
 
-  const submit = document.createElement('button');
-  submit.type = 'submit';
-  submit.textContent = 'Submit';
-  form.appendChild(submit);
+  //   const submit = document.createElement('button');
+  //   submit.type = 'submit';
+  //   submit.textContent = 'Submit';
+  //   form.appendChild(submit);
 
-  formContainer.appendChild(form);
+  //   formContainer.appendChild(form);
 
-  commentsSection.appendChild(formContainer);
+  //   commentsSection.appendChild(formContainer);
 
   return commentsSection;
 }

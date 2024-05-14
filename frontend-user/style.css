@@ -11,6 +11,7 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   min-width: 100vw;
+  overflow-x: hidden;
 }
 
 header {
@@ -64,7 +65,7 @@ main {
   display: flex;
   justify-content: center;
   min-width: 100vw;
-  height: 87vh;
+  min-height: 87vh;
   background-color: #afdde5;
   padding: 32px;
 }
