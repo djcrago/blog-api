@@ -1,7 +1,8 @@
 import { DateTime } from './node_modules/luxon/src/luxon.js';
 import getBlogPostPreview from './getBlogPostPreview.js';
+import renderFullBlogPost from './renderFullBlogPost.js';
 
-export default function createBlogPostElement(blogPost) {
+export default function createBlogPostPreview(blogPost) {
   const blogPostContainer = document.createElement('div');
   blogPostContainer.classList.toggle('blog-post');
 
@@ -25,7 +26,9 @@ export default function createBlogPostElement(blogPost) {
   body.textContent = preview;
   blogPostContainer.appendChild(body);
 
-  blogPostContainer.addEventListener('click', () => {});
+  blogPostContainer.addEventListener('click', () => {
+    renderFullBlogPost(blogPost);
+  });
 
   return blogPostContainer;
 }
