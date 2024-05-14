@@ -1,4 +1,3 @@
-import fetchPostComments from './fetchPostComments.js';
 import { DateTime } from './node_modules/luxon/src/luxon.js';
 
 export default function createFullPost(post) {
@@ -23,9 +22,6 @@ export default function createFullPost(post) {
   const body = document.createElement('p');
   body.textContent = post.body;
   postContainer.appendChild(body);
-
-  const comments = fetchPostComments(post);
-  console.log(comments);
 
   return postContainer;
 }
