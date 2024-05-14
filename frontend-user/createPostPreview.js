@@ -10,16 +10,11 @@ export default function createPostPreview(post) {
   title.textContent = post.title;
   postContainer.appendChild(title);
 
-  const date = document.createElement('p');
-  const formattedDate = DateTime.fromISO(post.date).toLocaleString(
-    DateTime.DATETIME_MED
-  );
-  date.textContent = formattedDate;
-  postContainer.appendChild(date);
-
-  const author = document.createElement('p');
-  author.textContent = `Author: ${post.author.first_name} ${post.author.last_name}`;
-  postContainer.appendChild(author);
+  const info = document.createElement('p');
+  const author = `${post.author.first_name} ${post.author.last_name}`;
+  const date = DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
+  info.textContent = `${author} - ${date}`;
+  postContainer.appendChild(info);
 
   const body = document.createElement('p');
   const preview = getPostPreview(post.body);

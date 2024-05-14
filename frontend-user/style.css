@@ -72,6 +72,7 @@ main {
 #posts-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3vh;
 }
 
@@ -84,10 +85,13 @@ main {
   box-shadow: 2px 2px 3px 1px #daeff3;
   padding: 32px;
   border-radius: 8px;
-  max-width: 60vh;
-  min-width: 20ch;
+  width: 75ch;
   transition: transform 0.5s;
   transform: scale(1);
+}
+
+.post:active {
+  background-color: rgb(245, 245, 245);
 }
 
 .preview:hover {
@@ -96,8 +100,27 @@ main {
   transform: scale(1.05);
 }
 
-.post:active {
-  background-color: rgb(245, 245, 245);
+.full-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  width: 75vw;
+  min-height: 30vh;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  width: 50vw;
 }
 
 footer {
