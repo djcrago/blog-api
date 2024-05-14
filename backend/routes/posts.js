@@ -18,6 +18,8 @@ router.post('/unpublish-post/:postid', post_controller.unpublish_post);
 
 router.get('/:postid', post_controller.post_detail);
 
+router.get('/:postid/comments', comment_controller.comments);
+
 router.post('/:postid/create-comment', comment_controller.create_comment);
 
 router.post(

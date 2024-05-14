@@ -3,6 +3,11 @@ const Comment = require('../models/comment');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
+module.exports.comments = asyncHandler(async (req, res, next) => {
+  const comments = await Comment.find({ post: req.params.postid }).exec();
+  res.json(comments);
+});
+
 module.exports.create_comment = [
   body('body', 'Comment must not be empty').trim().notEmpty().escape(),
 
