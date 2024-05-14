@@ -39,11 +39,16 @@ main {
 }
 
 .blog-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
   background-color: white;
   box-shadow: 2px 2px 3px 1px #daeff3;
-  padding: 16px;
+  padding: 32px;
   border-radius: 8px;
-  max-width: 60ch;
+  max-width: 60vh;
+  min-width: 20ch;
 }
 
 footer {

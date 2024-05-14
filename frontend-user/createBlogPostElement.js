@@ -1,4 +1,5 @@
-import { DateTime } from 'luxon';
+import { DateTime } from './node_modules/luxon/src/luxon.js';
+import getBlogPostPreview from './getBlogPostPreview.js';
 
 export default function createBlogPostElement(blogPost) {
   const blogPostContainer = document.createElement('div');
@@ -9,16 +10,22 @@ export default function createBlogPostElement(blogPost) {
   blogPostContainer.appendChild(title);
 
   const date = document.createElement('p');
-  const unformattedDate = blogPost.date;
-  const formattedDate = DateTime.fromJSDate(unformattedDate).toLocaleString(
+  const formattedDate = DateTime.fromISO(blogPost.date).toLocaleString(
     DateTime.DATETIME_MED
   );
-  date.textContent = blogPost.date;
+  date.textContent = formattedDate;
   blogPostContainer.appendChild(date);
 
+  const author = document.createElement('p');
+  author.textContent = `Author: ${blogPost.author.first_name} ${blogPost.author.last_name}`;
+  blogPostContainer.appendChild(author);
+
   const body = document.createElement('p');
-  body.textContent = blogPost.body;
+  const preview = getBlogPostPreview(blogPost.body);
+  body.textContent = preview;
   blogPostContainer.appendChild(body);
+
+  blogPostContainer.addEventListener('click', () => {});
 
   return blogPostContainer;
 }
