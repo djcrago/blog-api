@@ -1,0 +1,152 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  height: 10vh;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  height: 6vh;
+  background-color: #2dd9e9;
+  color: #4a3d3a;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  min-width: 100vw;
+  height: 4vh;
+  background-color: #0fa4af;
+}
+
+a:link,
+a:visited {
+  transition: all 0.3s;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+a:hover {
+  transition: all 0.3s;
+  background-color: #024950;
+  color: white;
+}
+
+a:active {
+  transition: background-color 0s;
+  background-color: #4a3d3a;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 87vh;
+  background-color: #afdde5;
+  padding: 32px;
+}
+
+#posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  background-color: white;
+  box-shadow: 2px 2px 3px 1px #daeff3;
+  padding: 32px;
+  border-radius: 8px;
+  width: 75ch;
+  transition: transform 0.5s;
+  transform: scale(1);
+}
+
+.post:active {
+  background-color: rgb(245, 245, 245);
+}
+
+.preview:hover {
+  cursor: pointer;
+  transition: transform 0.5s;
+  transform: scale(1.05);
+}
+
+.full-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  width: 75vw;
+  min-height: 30vh;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  width: 50vw;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+  width: 40vw;
+  background-color: #f4f6f6;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  height: 3vh;
+  background-color: #024950;
+  color: white;
+}
+
+footer > nav > a:link,
+footer > nav > a:visited {
+  color: white;
+}
