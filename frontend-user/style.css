@@ -69,13 +69,13 @@ main {
   padding: 32px;
 }
 
-#blogs-container {
+#posts-container {
   display: flex;
   flex-direction: column;
   gap: 3vh;
 }
 
-.blog-post {
+.post {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +96,7 @@ main {
   transform: scale(1.05);
 }
 
-.blog-post:active {
+.post:active {
   background-color: rgb(245, 245, 245);
 }
 

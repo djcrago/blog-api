@@ -1,5 +1,5 @@
-export default function getBlogPostPreview(blogPostBody) {
-  const words = blogPostBody.split(' ');
+export default function getPostPreview(postBody) {
+  const words = postBody.split(' ');
 
   const wordsInPreview = [];
 

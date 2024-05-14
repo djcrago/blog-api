@@ -1,16 +1,16 @@
-import fetchBlogPosts from './fetchBlogPosts.js';
-import createBlogPostPreview from './createBlogPostPreview.js';
-import renderBlogPostPreviews from './renderBlogPostPreviews.js';
+import fetchPosts from './fetchPosts.js';
+import createPostPreview from './createPostPreview.js';
+import renderPostPreviews from './renderPostPreviews.js';
 
 export default async function renderHomePage() {
-  const arrayOfBlogPosts = await fetchBlogPosts();
+  const arrayOfPosts = await fetchPosts();
 
-  const blogPostPreviews = [];
+  const postPreviews = [];
 
-  arrayOfBlogPosts.forEach((blogPost) => {
-    const blogPostElement = createBlogPostPreview(blogPost);
-    blogPostPreviews.push(blogPostElement);
+  arrayOfPosts.forEach((post) => {
+    const postElement = createPostPreview(post);
+    postPreviews.push(postElement);
   });
 
-  renderBlogPostPreviews(blogPostPreviews);
+  renderPostPreviews(postPreviews);
 }
