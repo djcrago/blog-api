@@ -4,7 +4,7 @@ import renderFullBlogPost from './renderFullBlogPost.js';
 
 export default function createBlogPostPreview(blogPost) {
   const blogPostContainer = document.createElement('div');
-  blogPostContainer.classList.toggle('blog-post');
+  blogPostContainer.classList.add('blog-post', 'preview');
 
   const title = document.createElement('h2');
   title.textContent = blogPost.title;
