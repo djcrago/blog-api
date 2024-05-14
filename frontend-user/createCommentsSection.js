@@ -13,20 +13,44 @@ export default async function createCommentsSection(post) {
 
   comments.forEach((comment) => {
     const commentElement = document.createElement('div');
+    commentElement.classList.toggle('comment');
 
     const date = document.createElement('p');
-    const formattedDate = DateTime.fromISO(post.date).toLocaleString(
-      DateTime.DATETIME_MED
+    const formattedDate = DateTime.fromISO(comment.date).toLocaleString(
+      DateTime.DATE_SHORT
     );
     date.textContent = formattedDate;
     commentElement.appendChild(date);
 
     const body = document.createElement('p');
-    body.textContent = post.body;
+    body.textContent = comment.body;
     commentElement.appendChild(body);
 
     commentsSection.appendChild(commentElement);
   });
+
+  const formContainer = document.createElement('div');
+
+  const formTitle = document.createElement('h4');
+  formTitle.textContent = 'Write a new comment';
+  formContainer.appendChild(formTitle);
+
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = `http://127.0.0.1:3000/posts/${post._id}/create-comment`;
+
+  const body = document.createElement('input');
+  body.name = 'body';
+  form.appendChild(body);
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Submit';
+  form.appendChild(submit);
+
+  formContainer.appendChild(form);
+
+  commentsSection.appendChild(formContainer);
 
   return commentsSection;
 }
