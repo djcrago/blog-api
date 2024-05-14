@@ -49,6 +49,18 @@ main {
   border-radius: 8px;
   max-width: 60vh;
   min-width: 20ch;
+  transition: transform 0.5s;
+  transform: scale(1);
+}
+
+.blog-post:hover {
+  cursor: pointer;
+  transition: transform 0.5s;
+  transform: scale(1.05);
+}
+
+.blog-post:active {
+  background-color: rgb(245, 245, 245);
 }
 
 footer {
