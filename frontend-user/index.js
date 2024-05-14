@@ -1,5 +1,5 @@
 import fetchBlogPosts from './fetchBlogPosts.js';
-import createBlogPostElement from '../createBlogPostElement.js';
+import createBlogPostElement from './createBlogPostElement.js';
 
 const blogsContainer = document.querySelector('#blogs-container');
 
