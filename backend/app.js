@@ -1,13 +1,11 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 
-// Require routers
-const indexRouter = require('./routes/index');
-const postRouter = require('./routes/posts');
-const usersRouter = require('./routes/users');
-
 const app = express();
+
+app.use(cors());
 
 // User model is utilized by passport
 const User = require('./models/user');
@@ -43,6 +41,11 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
+
+// Require routers
+const indexRouter = require('./routes/index');
+const postRouter = require('./routes/posts');
+const usersRouter = require('./routes/users');
 
 app.use('/', indexRouter);
 app.use('/posts', postRouter);
