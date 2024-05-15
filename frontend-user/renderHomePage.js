@@ -8,8 +8,10 @@ export default async function renderHomePage() {
   const postPreviews = [];
 
   arrayOfPosts.forEach((post) => {
-    const postElement = createPostPreview(post);
-    postPreviews.push(postElement);
+    if (post.published) {
+      const postElement = createPostPreview(post);
+      postPreviews.push(postElement);
+    }
   });
 
   renderPostPreviews(postPreviews);
