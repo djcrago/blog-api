@@ -1,3 +1,3 @@
-import renderHomePage from './modules/renderHomePage.js';
+import previewsController from './modules/previewsController.js';
 
-renderHomePage();
+previewsController();
