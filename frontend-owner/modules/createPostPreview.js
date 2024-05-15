@@ -1,6 +1,6 @@
 import { DateTime } from '../node_modules/luxon/src/luxon.js';
-import getPostPreview from './getPostPreview.js';
-import renderFullPost from './renderFullPost.js';
+import getBodyPreview from './getBodyPreview.js';
+import renderFullPost from './renderFullPublishedPost.js';
 
 export default function createPostPreview(post) {
   const postContainer = document.createElement('div');
@@ -17,7 +17,7 @@ export default function createPostPreview(post) {
   postContainer.appendChild(info);
 
   const body = document.createElement('p');
-  const preview = getPostPreview(post.body);
+  const preview = getBodyPreview(post.body);
   body.textContent = preview;
   postContainer.appendChild(body);
 

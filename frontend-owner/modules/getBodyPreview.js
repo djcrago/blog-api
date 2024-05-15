@@ -1,4 +1,4 @@
-export default function getPostPreview(postBody) {
+export default function getBodyPreview(postBody) {
   const words = postBody.split(' ');
 
   const wordsInPreview = [];
