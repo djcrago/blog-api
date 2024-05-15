@@ -1,4 +1,5 @@
 import { DateTime } from '../node_modules/luxon/src/luxon.js';
+import createCommentForm from './createCommentForm.js';
 import getComments from './getComments.js';
 
 export default async function createCommentsSection(post) {
@@ -29,28 +30,9 @@ export default async function createCommentsSection(post) {
     commentsSection.appendChild(commentElement);
   });
 
-  //   const formContainer = document.createElement('div');
+  const formContainer = createCommentForm(post);
 
-  //   const formTitle = document.createElement('h4');
-  //   formTitle.textContent = 'Write a new comment';
-  //   formContainer.appendChild(formTitle);
-
-  //   const form = document.createElement('form');
-  //   form.action = `http://127.0.0.1:3000/posts/${post._id}/create-comment`;
-  //   form.method = 'POST';
-
-  //   const body = document.createElement('input');
-  //   body.name = 'body';
-  //   form.appendChild(body);
-
-  //   const submit = document.createElement('button');
-  //   submit.type = 'submit';
-  //   submit.textContent = 'Submit';
-  //   form.appendChild(submit);
-
-  //   formContainer.appendChild(form);
-
-  //   commentsSection.appendChild(formContainer);
+  commentsSection.appendChild(formContainer);
 
   return commentsSection;
 }
