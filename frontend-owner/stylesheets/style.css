@@ -160,5 +160,9 @@ footer {
 
 footer > nav > a:link,
 footer > nav > a:visited {
+  background-color: #024950;
   color: white;
+  text-decoration: underline;
+  font-size: 1rem;
+  padding: 0;
 }
