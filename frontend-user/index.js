@@ -1,3 +1,3 @@
-import renderHomePage from './renderHomePage.js';
+import renderHomePage from './modules/renderHomePage.js';
 
 renderHomePage();

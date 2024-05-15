@@ -1,10 +1,8 @@
-import { DateTime } from './node_modules/luxon/src/luxon.js';
-import getPostPreview from './getPostPreview.js';
-import renderFullPost from './renderFullPost.js';
+import { DateTime } from '../node_modules/luxon/src/luxon.js';
 
-export default function createPostPreview(post) {
+export default function createFullPost(post) {
   const postContainer = document.createElement('div');
-  postContainer.classList.add('post', 'preview');
+  postContainer.classList.toggle('full-post');
 
   const title = document.createElement('h2');
   title.textContent = post.title;
@@ -17,13 +15,8 @@ export default function createPostPreview(post) {
   postContainer.appendChild(info);
 
   const body = document.createElement('p');
-  const preview = getPostPreview(post.body);
-  body.textContent = preview;
+  body.textContent = post.body;
   postContainer.appendChild(body);
-
-  postContainer.addEventListener('click', () => {
-    renderFullPost(post);
-  });
 
   return postContainer;
 }
