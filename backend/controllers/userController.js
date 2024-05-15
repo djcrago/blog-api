@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 module.exports.login = asyncHandler(async (req, res, next) => {
-  const user = User.findOne({ username: req.body.username }).exec();
+  const user = await User.findOne({ username: req.body.username }).exec();
 
   const passwordsMatch = user.password === req.body.password;
 
