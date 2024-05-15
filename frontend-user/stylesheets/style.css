@@ -121,7 +121,7 @@ main {
   min-height: 30vh;
 }
 
-.back-btn {
+button {
   padding: 4px;
   font-size: 1rem;
 }

@@ -14,7 +14,6 @@ export default async function fullPostController(post) {
   fullPostContainer.appendChild(commentsSection);
 
   const backBtn = document.createElement('button');
-  backBtn.classList.toggle('back-btn');
   backBtn.textContent = 'Back';
   backBtn.addEventListener('click', () => {
     previewsController();

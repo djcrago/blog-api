@@ -24,7 +24,6 @@ export default async function fullPostController(post, isDraft = false) {
   }
 
   const backBtn = document.createElement('button');
-  backBtn.classList.toggle('back-btn');
   backBtn.textContent = 'Back';
   backBtn.addEventListener('click', () => {
     previewsController(isDraft);
