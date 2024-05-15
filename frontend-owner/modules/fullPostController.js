@@ -1,5 +1,6 @@
 import createFullPost from './createFullPost.js';
 import createCommentsSection from './createCommentsSection.js';
+import editDraft from './editDraft.js';
 import renderFullPost from './renderFullPost.js';
 import postPublished from './postPublished.js';
 
@@ -15,6 +16,15 @@ export default async function fullPostController(post, isDraft = false) {
     fullPostContainer.appendChild(commentsSection);
   }
 
+  if (isDraft) {
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit Draft';
+    editBtn.addEventListener('click', () => {
+      editDraft(post);
+    });
+    fullPostContainer.appendChild(editBtn);
+  }
+
   const publishOrNotBtn = document.createElement('button');
   if (isDraft) {
     publishOrNotBtn.textContent = 'Publish Post';
@@ -26,15 +36,14 @@ export default async function fullPostController(post, isDraft = false) {
   });
   fullPostContainer.appendChild(publishOrNotBtn);
 
+  const backBtn = document.createElement('button');
+  backBtn.textContent = 'Back';
   let href;
   if (isDraft) {
     href = 'drafts.html';
   } else {
     href = 'published-posts.html';
   }
-
-  const backBtn = document.createElement('button');
-  backBtn.textContent = 'Back';
   backBtn.addEventListener('click', () => (window.location.href = href));
   fullPostContainer.appendChild(backBtn);
 
