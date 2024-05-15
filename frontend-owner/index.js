@@ -1,3 +1,3 @@
-import renderPublishedPosts from './modules/renderPublishedPosts.js';
+import previewsController from './modules/previewsController.js';
 
-renderPublishedPosts();
+previewsController();
