@@ -1,7 +1,6 @@
 form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 2vh;
   background-color: white;
@@ -36,12 +35,6 @@ label {
   padding: 8px;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-button[type='submit'] {
-  padding: 4px;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 .login-group {
