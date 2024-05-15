@@ -2,14 +2,16 @@ import fullPostController from './fullPostController.js';
 
 export default function createCommentForm(post) {
   const formContainer = document.createElement('div');
+  formContainer.classList.toggle('form-container');
 
-  const formTitle = document.createElement('h4');
+  const formTitle = document.createElement('h3');
   formTitle.textContent = 'Write a new comment';
   formContainer.appendChild(formTitle);
 
   const form = document.createElement('form');
 
-  const body = document.createElement('input');
+  const body = document.createElement('textarea');
+  body.classList.toggle('comment-body');
   body.name = 'body';
   form.appendChild(body);
 
