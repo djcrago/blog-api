@@ -1,9 +1,11 @@
 const postsContainer = document.querySelector('#posts-container');
 
-export default function renderFullPost(fullPost) {
+export default function renderPreviews(previews) {
   while (postsContainer.firstChild) {
     postsContainer.removeChild(postsContainer.firstChild);
   }
 
-  postsContainer.appendChild(fullPost);
+  previews.forEach((preview) => {
+    postsContainer.appendChild(preview);
+  });
 }
