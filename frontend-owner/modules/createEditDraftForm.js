@@ -55,7 +55,10 @@ export default function createEditDraftForm(post) {
     })
       .then((response) => response.json())
       .then((json) => {
-        fullPostController(post);
+        const newPost = post;
+        newPost.title = title.value;
+        newPost.body = body.value;
+        fullPostController(newPost, true);
         console.log(json);
       });
   });
