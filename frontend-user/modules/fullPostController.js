@@ -17,7 +17,7 @@ export default async function fullPostController(post) {
   backBtn.classList.toggle('back-btn');
   backBtn.textContent = 'Back';
   backBtn.addEventListener('click', () => {
-    previewsController(isDraft);
+    previewsController();
   });
   fullPostContainer.appendChild(backBtn);
 
