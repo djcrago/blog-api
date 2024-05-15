@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Blog</title>
     <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="stylesheet" href="./stylesheets/form.css" />
     <script src="./index.js" type="module" defer></script>
   </head>
   <body>
     <header>
       <h1>My Blog</h1>
-      <nav>
-        <a href="./published-posts.html">Published Posts</a>
-        <a href="./drafts.html">Drafts</a>
-        <a href="./new-draft.html">Write New Draft</a>
-      </nav>
+      <nav></nav>
     </header>
     <main>
-      <div id="login-container"></div>
+      <form id="login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input id="username" name="username" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" name="password" type="password" required />
+          </div>
+          <button type="submit">Login</button>
+        </div>
+        <div class="errors"></div>
+      </form>
     </main>
     <footer>
       <nav></nav>

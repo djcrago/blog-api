@@ -1,6 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 2vh;
   background-color: white;
@@ -11,7 +12,6 @@ form {
 
 .form-group {
   display: flex;
-  flex-direction: column;
   gap: 2vw;
 }
 
@@ -20,7 +20,9 @@ label {
   font-size: 1.2rem;
 }
 
-#title {
+#title,
+#username,
+#password {
   height: 5vh;
   width: 40vw;
   font-size: 1rem;
@@ -40,4 +42,19 @@ button[type='submit'] {
   padding: 4px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.login-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 64px;
+}
+
+.errors {
+  color: red;
+  position: absolute;
+  top: 80vh;
 }
