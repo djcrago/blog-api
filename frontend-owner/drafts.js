@@ -1,3 +1,3 @@
-import renderDraftPosts from './renderDraftPosts.js';
+import renderDraftPosts from './modules/renderDraftPosts.js';
 
 renderDraftPosts();

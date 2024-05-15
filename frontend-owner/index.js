@@ -1,3 +1,3 @@
-import renderPublishedPosts from './renderPublishedPosts.js';
+import renderPublishedPosts from './modules/renderPublishedPosts.js';
 
 renderPublishedPosts();

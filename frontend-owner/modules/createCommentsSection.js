@@ -1,5 +1,5 @@
+import { DateTime } from '../node_modules/luxon/src/luxon.js';
 import fetchPostComments from './fetchPostComments.js';
-import { DateTime } from './node_modules/luxon/src/luxon.js';
 import renderFullPost from './renderFullPost.js';
 
 export default async function createCommentsSection(post) {
