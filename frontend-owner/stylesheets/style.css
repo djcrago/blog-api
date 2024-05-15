@@ -79,7 +79,7 @@ main {
   gap: 3vh;
 }
 
-.post {
+.preview {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,14 +93,21 @@ main {
   transform: scale(1);
 }
 
-.post:active {
-  background-color: rgb(245, 245, 245);
-}
-
 .preview:hover {
   cursor: pointer;
   transition: transform 0.5s;
   transform: scale(1.05);
+}
+
+.preview:active {
+  background-color: rgb(245, 245, 245);
+}
+
+.full-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
 }
 
 .full-post {
@@ -115,6 +122,11 @@ main {
   min-height: 30vh;
 }
 
+.back-btn {
+  padding: 4px;
+  font-size: 1rem;
+}
+
 .comments {
   display: flex;
   flex-direction: column;
@@ -123,14 +135,14 @@ main {
   background-color: white;
   padding: 32px;
   border-radius: 8px;
-  width: 50vw;
+  width: 60vw;
 }
 
 .comment {
   display: flex;
   flex-direction: column;
   gap: 0.5vh;
-  width: 40vw;
+  width: 50vw;
   background-color: #f4f6f6;
   border-radius: 4px;
   padding: 8px;
