@@ -20,7 +20,11 @@
     </header>
     <main>
       <h2>Write Your Draft</h2>
-      <form action="http://localhost:3000/posts/create-post" method="post">
+      <form
+        id="draft-form"
+        action="http://localhost:3000/posts/create-post"
+        method="post"
+      >
         <div class="form-group">
           <label for="title">Title:</label>
           <input id="title" name="title" type="text" required />
@@ -29,12 +33,6 @@
           <label for="body">Body:</label>
           <textarea id="body" name="body" type="text" required></textarea>
         </div>
-        <input
-          id="author"
-          name="author"
-          type="hidden"
-          value="664237b178a2bf1aa0fe1dfb"
-        />
         <button type="submit">Create draft</button>
       </form>
     </main>
