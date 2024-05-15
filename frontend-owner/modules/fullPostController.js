@@ -1,6 +1,6 @@
 import createFullPost from './createFullPost.js';
 import createCommentsSection from './createCommentsSection.js';
-import editDraft from './editDraft.js';
+import editDraftController from './editDraftController.js';
 import renderFullPost from './renderFullPost.js';
 import postPublished from './postPublished.js';
 
@@ -20,7 +20,7 @@ export default async function fullPostController(post, isDraft = false) {
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit Draft';
     editBtn.addEventListener('click', () => {
-      editDraft(post);
+      editDraftController(post);
     });
     fullPostContainer.appendChild(editBtn);
   }
