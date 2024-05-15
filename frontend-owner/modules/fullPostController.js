@@ -1,6 +1,5 @@
 import createFullPost from './createFullPost.js';
 import createCommentsSection from './createCommentsSection.js';
-import previewsController from './previewsController.js';
 import renderFullPost from './renderFullPost.js';
 import postPublished from './postPublished.js';
 
@@ -27,11 +26,16 @@ export default async function fullPostController(post, isDraft = false) {
   });
   fullPostContainer.appendChild(publishOrNotBtn);
 
+  let href;
+  if (isDraft) {
+    href = 'drafts.html';
+  } else {
+    href = 'published-posts.html';
+  }
+
   const backBtn = document.createElement('button');
   backBtn.textContent = 'Back';
-  backBtn.addEventListener('click', () => {
-    previewsController(isDraft);
-  });
+  backBtn.addEventListener('click', () => (window.location.href = href));
   fullPostContainer.appendChild(backBtn);
 
   renderFullPost(fullPostContainer);
