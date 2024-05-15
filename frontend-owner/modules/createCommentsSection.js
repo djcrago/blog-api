@@ -1,5 +1,5 @@
 import { DateTime } from '../node_modules/luxon/src/luxon.js';
-import fetchComments from './fetchComments.js';
+import getComments from './getComments.js';
 
 export default async function createCommentsSection(post) {
   const commentsSection = document.createElement('div');
@@ -9,7 +9,7 @@ export default async function createCommentsSection(post) {
   title.textContent = 'Comments';
   commentsSection.appendChild(title);
 
-  const comments = await fetchComments(post._id);
+  const comments = await getComments(post._id);
 
   comments.forEach((comment) => {
     const commentElement = document.createElement('div');
