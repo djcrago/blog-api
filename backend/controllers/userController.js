@@ -6,6 +6,10 @@ const { body, validationResult } = require('express-validator');
 module.exports.login = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username }).exec();
 
+  if (!user) {
+    res.status(400).json({ message: 'user not found' });
+  }
+
   const passwordsMatch = user.password === req.body.password;
 
   if (!passwordsMatch) {
@@ -36,7 +40,7 @@ module.exports.sign_up = [
     .escape(),
   body('password_confirm', 'Passwords do not match')
     .trim()
-    .custom(({ req }) => {
+    .custom((value, { req }) => {
       return req.body.password_confirm === req.body.password;
     }),
 
