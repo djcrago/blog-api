@@ -7,13 +7,13 @@ module.exports.login = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username }).exec();
 
   if (!user) {
-    res.status(400).json({ message: 'user not found' });
+    res.status(400).json({ message: 'Incorrect username' });
   }
 
   const passwordsMatch = user.password === req.body.password;
 
   if (!passwordsMatch) {
-    res.status(400).json({ message: 'incorrect password' });
+    res.status(400).json({ message: 'Incorrect password' });
   } else {
     res.json({ message: 'user logged in successfully' });
   }
@@ -22,7 +22,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
 module.exports.sign_up = [
   body('first_name', 'First name must not be empty').trim().notEmpty().escape(),
   body('last_name', 'Last name must not be empty').trim().notEmpty().escape(),
-  body('username', 'Username must be an email')
+  body('username', 'Username must be an email (example@example.com)')
     .trim()
     .custom(async (value) => {
       const userExists = await User.findOne({ username: value }).exec();
@@ -43,6 +43,9 @@ module.exports.sign_up = [
     .custom((value, { req }) => {
       return req.body.password_confirm === req.body.password;
     }),
+  body('author_passcode', 'Incorrect passcode')
+    .trim()
+    .custom((value) => value === process.env.AUTHOR_PASSCODE),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
