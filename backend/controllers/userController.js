@@ -74,7 +74,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
     if (!isMatch) {
       res.status(400).json({ message: 'Incorrect password' });
     } else {
-      res.json({ message: 'user logged in successfully', token });
+      res.json({ message: 'user logged in successfully', token, user });
     }
   });
 });

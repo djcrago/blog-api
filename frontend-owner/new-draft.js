@@ -5,17 +5,16 @@ const body = document.querySelector('#body');
 draftForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  // Make sure user is properly authenticated first
   fetch('http://localhost:3000/posts/create-post', {
     method: 'POST',
     body: JSON.stringify({
       title: title.value,
       body: body.value,
-      // Get this when author logs in
-      author: 'author',
+      author: localStorage.authorid,
     }),
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `bearer ${localStorage.token}`,
     },
   })
     .then((response) => response.json())

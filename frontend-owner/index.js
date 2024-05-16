@@ -18,9 +18,9 @@ loginForm.addEventListener('submit', (event) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
       if (json.message === 'user logged in successfully') {
         localStorage.token = json.token;
+        localStorage.authorid = json.user._id;
         window.location.href = 'published-posts.html';
       } else {
         while (errors.firstChild) {
