@@ -4,17 +4,22 @@ const User = require('../models/user');
 
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
+const passport = require('passport');
 
-module.exports.posts = asyncHandler(async (req, res, next) => {
-  const allPosts = await Post.find()
-    .sort({ date: -1 })
-    .populate('author')
-    .exec();
+module.exports.posts = [
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler(async (req, res, next) => {
+    const allPosts = await Post.find()
+      .sort({ date: -1 })
+      .populate('author')
+      .exec();
 
-  res.json(allPosts);
-});
+    res.json(allPosts);
+  }),
+];
 
 module.exports.create_post = [
+  passport.authenticate('jwt', { session: false }),
   body('title', 'Title must not be empty').trim().notEmpty().escape(),
   body('body', 'Body must not be empty').trim().notEmpty().escape(),
 
@@ -39,6 +44,7 @@ module.exports.create_post = [
 ];
 
 module.exports.edit_post = [
+  passport.authenticate('jwt', { session: false }),
   body('title', 'Title must not be empty').trim().notEmpty().escape(),
   body('body', 'Body must not be empty').trim().notEmpty().escape(),
 
@@ -65,27 +71,41 @@ module.exports.edit_post = [
   }),
 ];
 
-module.exports.delete_post = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndDelete(req.params.postid);
-  res.json({ message: 'post deleted successfully' });
-});
+module.exports.delete_post = [
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler(async (req, res, next) => {
+    await Post.findByIdAndDelete(req.params.postid);
+    res.json({ message: 'post deleted successfully' });
+  }),
+];
 
-module.exports.publish_post = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndUpdate(req.params.postid, { published: true }, {});
-  res.json({ message: 'post published successfully' });
-});
+module.exports.publish_post = [
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler(async (req, res, next) => {
+    await Post.findByIdAndUpdate(req.params.postid, { published: true }, {});
+    res.json({ message: 'post published successfully' });
+  }),
+];
 
-module.exports.unpublish_post = asyncHandler(async (req, res, next) => {
-  await Post.findByIdAndUpdate(req.params.postid, { published: false }, {});
-  res.json({ message: 'post unpublished successfully' });
-});
+module.exports.unpublish_post = [
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler(async (req, res, next) => {
+    await Post.findByIdAndUpdate(req.params.postid, { published: false }, {});
+    res.json({ message: 'post unpublished successfully' });
+  }),
+];
 
-module.exports.post_detail = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.postid).populate('author').exec();
+module.exports.post_detail = [
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler(async (req, res, next) => {
+    const post = await Post.findById(req.params.postid)
+      .populate('author')
+      .exec();
 
-  if (!post) {
-    res.status(404).json({ message: 'post not found' });
-  } else {
-    res.json(post);
-  }
-});
+    if (!post) {
+      res.status(404).json({ message: 'post not found' });
+    } else {
+      res.json(post);
+    }
+  }),
+];

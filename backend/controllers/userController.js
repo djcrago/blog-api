@@ -65,16 +65,11 @@ module.exports.login = asyncHandler(async (req, res, next) => {
 
   bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
     if (err) return next(err);
-    // return next(null, isMatch);
 
     const options = {};
     options.expiresIn = 60 * 60;
 
-    const token = jwt.sign(
-      { username: req.body.username },
-      process.env.TOKEN_KEY,
-      options
-    );
+    const token = jwt.sign({ user }, process.env.TOKEN_KEY, options);
 
     if (!isMatch) {
       res.status(400).json({ message: 'Incorrect password' });

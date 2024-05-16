@@ -20,6 +20,7 @@ loginForm.addEventListener('submit', (event) => {
     .then((json) => {
       console.log(json);
       if (json.message === 'user logged in successfully') {
+        localStorage.token = json.token;
         window.location.href = 'published-posts.html';
       } else {
         while (errors.firstChild) {
