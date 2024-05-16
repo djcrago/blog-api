@@ -1,6 +1,7 @@
 const loginForm = document.querySelector('#login-form');
 const username = document.querySelector('#username');
 const password = document.querySelector('#password');
+const errors = document.querySelector('.errors');
 
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -16,5 +17,30 @@ loginForm.addEventListener('submit', (event) => {
     },
   })
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => {
+      console.log(json);
+      if (json.message === 'user logged in successfully') {
+        window.location.href = 'published-posts.html';
+      } else {
+        while (errors.firstChild) {
+          errors.removeChild(errors.firstChild);
+        }
+
+        const errorList = document.createElement('ul');
+
+        if (json.errors) {
+          json.errors.forEach((error) => {
+            const errorItem = document.createElement('li');
+            errorItem.textContent = error.msg;
+            errorList.appendChild(errorItem);
+          });
+        } else {
+          const errorMessage = document.createElement('li');
+          errorMessage.textContent = json.message;
+          errorList.appendChild(errorMessage);
+        }
+
+        errors.appendChild(errorList);
+      }
+    });
 });

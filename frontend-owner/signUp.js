@@ -5,6 +5,7 @@ const usernameField = document.querySelector('#username');
 const passwordField = document.querySelector('#password');
 const passwordConfirm = document.querySelector('#password_confirm');
 const authorPasscode = document.querySelector('#author_passcode');
+const errors = document.querySelector('.errors');
 
 signUpForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -28,6 +29,20 @@ signUpForm.addEventListener('submit', (event) => {
       console.log(json);
       if (json.message === 'user created successfully') {
         window.location.href = 'index.html';
+      } else {
+        while (errors.firstChild) {
+          errors.removeChild(errors.firstChild);
+        }
+
+        const errorList = document.createElement('ul');
+
+        json.errors.forEach((error) => {
+          const errorItem = document.createElement('li');
+          errorItem.textContent = error.msg;
+          errorList.appendChild(errorItem);
+        });
+
+        errors.appendChild(errorList);
       }
       // Else display error messages and do not redirect
     });
