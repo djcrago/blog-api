@@ -3,6 +3,7 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 module.exports.sign_up = [
   body('first_name', 'First name must not be empty').trim().notEmpty().escape(),
@@ -62,11 +63,23 @@ module.exports.login = asyncHandler(async (req, res, next) => {
     res.status(400).json({ message: 'Incorrect username' });
   }
 
-  const passwordsMatch = user.password === req.body.password;
+  bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+    if (err) return next(err);
+    // return next(null, isMatch);
 
-  if (!passwordsMatch) {
-    res.status(400).json({ message: 'Incorrect password' });
-  } else {
-    res.json({ message: 'user logged in successfully' });
-  }
+    const options = {};
+    options.expiresIn = 60 * 60;
+
+    const token = jwt.sign(
+      { username: req.body.username },
+      process.env.TOKEN_KEY,
+      options
+    );
+
+    if (!isMatch) {
+      res.status(400).json({ message: 'Incorrect password' });
+    } else {
+      res.json({ message: 'user logged in successfully', token });
+    }
+  });
 });

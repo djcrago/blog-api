@@ -11,6 +11,9 @@ app.use(cors());
 const User = require('./models/user');
 
 // Passportjs is for authentication
+const passport = require('passport');
+const jwtStrategy = require('./strategies/jwt');
+passport.use(jwtStrategy);
 
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
