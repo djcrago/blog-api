@@ -2,22 +2,7 @@ const User = require('../models/user');
 
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
-
-module.exports.login = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({ username: req.body.username }).exec();
-
-  if (!user) {
-    res.status(400).json({ message: 'Incorrect username' });
-  }
-
-  const passwordsMatch = user.password === req.body.password;
-
-  if (!passwordsMatch) {
-    res.status(400).json({ message: 'Incorrect password' });
-  } else {
-    res.json({ message: 'user logged in successfully' });
-  }
-});
+const bcrypt = require('bcryptjs');
 
 module.exports.sign_up = [
   body('first_name', 'First name must not be empty').trim().notEmpty().escape(),
@@ -48,20 +33,40 @@ module.exports.sign_up = [
     .custom((value) => value === process.env.AUTHOR_PASSCODE),
 
   asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req);
+    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+      if (err) return next(err);
 
-    const user = new User({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      username: req.body.username,
-      password: req.body.password,
+      const errors = validationResult(req);
+
+      const user = new User({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        password: hashedPassword,
+      });
+
+      if (!errors.isEmpty()) {
+        res.status(400).json({ user, errors: errors.array() });
+      } else {
+        await user.save();
+        res.json({ message: 'user created successfully' });
+      }
     });
-
-    if (!errors.isEmpty()) {
-      res.status(400).json({ user, errors: errors.array() });
-    } else {
-      await user.save();
-      res.json({ message: 'user created successfully' });
-    }
   }),
 ];
+
+module.exports.login = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne({ username: req.body.username }).exec();
+
+  if (!user) {
+    res.status(400).json({ message: 'Incorrect username' });
+  }
+
+  const passwordsMatch = user.password === req.body.password;
+
+  if (!passwordsMatch) {
+    res.status(400).json({ message: 'Incorrect password' });
+  } else {
+    res.json({ message: 'user logged in successfully' });
+  }
+});
