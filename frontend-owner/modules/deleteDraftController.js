@@ -6,9 +6,11 @@ export default function deleteDraftController(post) {
   );
 
   if (deleteConfirmed === post.title) {
-    // Make sure user is properly authenticated first
     fetch(`http://localhost:3000/posts/delete-post/${post._id}/`, {
       method: 'POST',
+      headers: {
+        Authorization: `bearer ${localStorage.token}`,
+      },
     })
       .then((response) => response.json())
       .then((json) => {

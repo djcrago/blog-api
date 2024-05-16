@@ -43,7 +43,6 @@ export default function createEditDraftForm(post) {
   submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
-    // Make sure user is properly authenticated first
     fetch(`http://localhost:3000/posts/edit-post/${post._id}/`, {
       method: 'POST',
       body: JSON.stringify({
@@ -52,6 +51,7 @@ export default function createEditDraftForm(post) {
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `bearer ${localStorage.token}`,
       },
     })
       .then((response) => response.json())
