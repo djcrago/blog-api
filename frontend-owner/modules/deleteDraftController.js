@@ -2,10 +2,11 @@ import previewsController from './previewsController.js';
 
 export default function deleteDraftController(post) {
   const deleteConfirmed = prompt(
-    `This action cannot be undone. To delete this draft, type '${post.title}' and hit enter.`
+    `This action cannot be undone. To delete this draft, type "${post.title}" and hit enter.`
   );
 
   if (deleteConfirmed === post.title) {
+    // Make sure user is properly authenticated first
     fetch(`http://localhost:3000/posts/delete-post/${post._id}/`, {
       method: 'POST',
     })

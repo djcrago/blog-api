@@ -35,6 +35,7 @@ export default async function createCommentsSection(post) {
       );
 
       if (deleteConfirmed === 'Delete') {
+        // Make sure user is properly authenticated first
         fetch(
           `http://localhost:3000/posts/${post._id}/delete-comment/${comment._id}`,
           {

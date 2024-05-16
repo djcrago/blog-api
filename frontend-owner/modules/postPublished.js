@@ -10,6 +10,7 @@ export default async function postPublished(postid, isDraft = false) {
     href = 'drafts.html';
   }
 
+  // Make sure user is properly authenticated first
   fetch(`http://localhost:3000/posts/${route}/${postid}/`, {
     method: 'POST',
   })
