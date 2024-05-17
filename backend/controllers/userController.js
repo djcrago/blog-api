@@ -67,7 +67,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
     if (err) return next(err);
 
     const options = {};
-    options.expiresIn = 60 * 60;
+    options.expiresIn = 60 * 60 * 24; // 60s/min * 60min/hr * 24hr/day = 1 day
 
     const token = jwt.sign({ user }, process.env.TOKEN_KEY, options);
 
