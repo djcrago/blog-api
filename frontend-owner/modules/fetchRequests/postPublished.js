@@ -16,7 +16,7 @@ export default async function postPublished(postid, isDraft = false) {
     }
   );
 
-  const jsonResponse = rawResponse.json();
+  const jsonResponse = await rawResponse.json();
 
   return jsonResponse;
 }

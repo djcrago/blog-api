@@ -2,6 +2,7 @@ import postPublished from '../fetchRequests/postPublished.js';
 
 export default function createPublishedButton(postid, isDraft) {
   const publishedBtn = document.createElement('button');
+  publishedBtn.classList.toggle('published-btn');
 
   if (isDraft) publishedBtn.textContent = 'Publish Post';
   else publishedBtn.textContent = 'Unpublish Post';
@@ -10,10 +11,13 @@ export default function createPublishedButton(postid, isDraft) {
   if (isDraft) publishedOrNotHref = 'published-posts.html';
   else publishedOrNotHref = 'drafts.html';
 
-  publishedBtn.addEventListener('click', () => {
-    const publishPostResponse = postPublished(postid, isDraft);
+  publishedBtn.addEventListener('click', async () => {
+    const publishPostResponse = await postPublished(postid, isDraft);
 
-    if (publishPostResponse.status === 200) {
+    if (
+      publishPostResponse.message === 'post published successfully' ||
+      publishPostResponse.message === 'post unpublished successfully'
+    ) {
       window.location.href = publishedOrNotHref;
     } else {
       alert(
