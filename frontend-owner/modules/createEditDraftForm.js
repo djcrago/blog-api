@@ -1,3 +1,4 @@
+import postEditPost from './fetchRequests/postEditPost.js';
 import fullPostController from './fullPostController.js';
 
 export default function createEditDraftForm(post) {
@@ -40,29 +41,29 @@ export default function createEditDraftForm(post) {
 
   const submitBtn = document.createElement('button');
   submitBtn.textContent = 'Submit';
-  submitBtn.addEventListener('click', (event) => {
+  submitBtn.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/posts/edit-post/${post._id}/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title: title.value,
-        body: body.value,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `bearer ${localStorage.token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        const newPost = post;
-        newPost.title = title.value;
-        newPost.body = body.value;
-        fullPostController(newPost, true);
-        console.log(json);
-      });
+    const fieldValues = {
+      title: title.value,
+      body: body.value,
+    };
+
+    const editPostResponse = await postEditPost(post._id, fieldValues);
+
+    const newPost = post;
+    newPost.title = title.value;
+    newPost.body = body.value;
+
+    if (editPostResponse.message === 'post edited successfully') {
+      fullPostController(newPost, true);
+    } else {
+      alert(
+        'Draft Not Edited: there was a server error, please try again later'
+      );
+    }
   });
+
   editDraftForm.appendChild(submitBtn);
 
   return editDraftForm;

@@ -3,7 +3,7 @@ import createCommentsSection from './createCommentsSection.js';
 import editDraftController from './editDraftController.js';
 import deleteDraftController from './deleteDraftController.js';
 import renderFullPost from './renderFullPost.js';
-import postPublished from './postPublished.js';
+import postPublished from './fetchRequests/postPublished.js';
 
 export default async function fullPostController(post, isDraft = false) {
   const fullPostContainer = document.createElement('div');
@@ -23,8 +23,22 @@ export default async function fullPostController(post, isDraft = false) {
   } else {
     publishOrNotBtn.textContent = 'Unpublish Post';
   }
+  let publishedOrNotHref;
+  if (isDraft) {
+    publishedOrNotHref = 'published-posts.html';
+  } else {
+    publishedOrNotHref = 'drafts.html';
+  }
   publishOrNotBtn.addEventListener('click', () => {
-    postPublished(post._id, isDraft);
+    const publishPostResponse = postPublished(post._id, isDraft);
+
+    if (publishPostResponse.status === 200) {
+      window.location.href = publishedOrNotHref;
+    } else {
+      alert(
+        'Published Status Not Updated: there was a server error, please try again later'
+      );
+    }
   });
   fullPostContainer.appendChild(publishOrNotBtn);
 
@@ -46,13 +60,13 @@ export default async function fullPostController(post, isDraft = false) {
 
   const backBtn = document.createElement('button');
   backBtn.textContent = 'Back';
-  let href;
+  let backBtnHref;
   if (isDraft) {
-    href = 'drafts.html';
+    backBtnHref = 'drafts.html';
   } else {
-    href = 'published-posts.html';
+    backBtnHref = 'published-posts.html';
   }
-  backBtn.addEventListener('click', () => (window.location.href = href));
+  backBtn.addEventListener('click', () => (window.location.href = backBtnHref));
   fullPostContainer.appendChild(backBtn);
 
   renderFullPost(fullPostContainer);

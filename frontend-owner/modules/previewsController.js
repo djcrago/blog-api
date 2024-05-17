@@ -1,4 +1,4 @@
-import getPosts from './getPosts.js';
+import getPosts from './fetchRequests/getPosts.js';
 import createPreview from './createPreview.js';
 import renderPreviews from './renderPreviews.js';
 

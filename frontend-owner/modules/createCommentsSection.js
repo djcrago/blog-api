@@ -1,6 +1,7 @@
 import { DateTime } from '../node_modules/luxon/src/luxon.js';
 import fullPostController from './fullPostController.js';
-import getComments from './getComments.js';
+import getComments from './fetchRequests/getComments.js';
+import postDeleteComment from './fetchRequests/postDeleteComment.js';
 
 export default async function createCommentsSection(post) {
   const commentsSection = document.createElement('div');
@@ -29,26 +30,28 @@ export default async function createCommentsSection(post) {
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete Comment';
-    deleteBtn.addEventListener('click', () => {
+    deleteBtn.addEventListener('click', async () => {
       const deleteConfirmed = prompt(
         'This action cannot be undone. To delete this comment, type "Delete" and hit enter.'
       );
 
       if (deleteConfirmed === 'Delete') {
-        fetch(
-          `http://localhost:3000/posts/${post._id}/delete-comment/${comment._id}`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `bearer ${localStorage.token}`,
-            },
-          }
-        )
-          .then((response) => response.json())
-          .then((json) => {
-            fullPostController(post);
-            console.log(json);
-          });
+        const deleteCommentResponse = await postDeleteComment(
+          post._id,
+          comment._id
+        );
+
+        if (deleteCommentResponse.message === 'comment deleted successfully') {
+          fullPostController(post);
+        } else {
+          alert(
+            'Comment Not Deleted: there was a server error, please try again later'
+          );
+        }
+      } else {
+        alert(
+          'Comment Not Deleted: make sure you correctly type "Delete", please try again'
+        );
       }
     });
     commentElement.appendChild(deleteBtn);
