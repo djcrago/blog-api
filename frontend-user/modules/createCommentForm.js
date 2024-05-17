@@ -4,8 +4,8 @@ export default function createCommentForm(post) {
   const formContainer = document.createElement('div');
   formContainer.classList.toggle('form-container');
 
-  const formTitle = document.createElement('h3');
-  formTitle.textContent = 'Write a new comment';
+  const formTitle = document.createElement('h4');
+  formTitle.textContent = 'Write a New comment';
   formContainer.appendChild(formTitle);
 
   const form = document.createElement('form');

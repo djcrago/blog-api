@@ -14,16 +14,14 @@ form {
   border-radius: 8px;
 }
 
+h4 {
+  font-size: 1.1rem;
+}
+
 .comment-body {
-  width: 40vw;
-  height: 15vh;
+  width: 30vw;
+  height: 10vh;
   padding: 8px;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-button[type='submit'] {
-  padding: 4px;
-  font-size: 1rem;
-  cursor: pointer;
 }
