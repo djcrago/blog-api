@@ -1,3 +1,9 @@
 import previewsController from './modules/controllers/previewsController.js';
 
-previewsController(true);
+document.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.token || localStorage.token === '') {
+    window.location.href = './index.html';
+  } else {
+    previewsController(true);
+  }
+});
