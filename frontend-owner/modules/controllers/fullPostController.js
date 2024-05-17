@@ -3,7 +3,8 @@ import createCommentsSection from '../createElements/createCommentsSection.js';
 import editDraftController from './editDraftController.js';
 import deleteDraftController from './deleteDraftController.js';
 import renderFullPost from '../renderViews/renderFullPost.js';
-import postPublished from '../fetchRequests/postPublished.js';
+import createPublishedButton from '../createElements/createPublishedButton.js';
+import createBackButton from '../createElements/createBackButton.js';
 
 export default async function fullPostController(post, isDraft = false) {
   const fullPostContainer = document.createElement('div');
@@ -17,29 +18,7 @@ export default async function fullPostController(post, isDraft = false) {
     fullPostContainer.appendChild(commentsSection);
   }
 
-  const publishOrNotBtn = document.createElement('button');
-  if (isDraft) {
-    publishOrNotBtn.textContent = 'Publish Post';
-  } else {
-    publishOrNotBtn.textContent = 'Unpublish Post';
-  }
-  let publishedOrNotHref;
-  if (isDraft) {
-    publishedOrNotHref = 'published-posts.html';
-  } else {
-    publishedOrNotHref = 'drafts.html';
-  }
-  publishOrNotBtn.addEventListener('click', () => {
-    const publishPostResponse = postPublished(post._id, isDraft);
-
-    if (publishPostResponse.status === 200) {
-      window.location.href = publishedOrNotHref;
-    } else {
-      alert(
-        'Published Status Not Updated: there was a server error, please try again later'
-      );
-    }
-  });
+  const publishOrNotBtn = createPublishedButton(post._id, isDraft);
   fullPostContainer.appendChild(publishOrNotBtn);
 
   if (isDraft) {
@@ -58,15 +37,7 @@ export default async function fullPostController(post, isDraft = false) {
     fullPostContainer.appendChild(deleteBtn);
   }
 
-  const backBtn = document.createElement('button');
-  backBtn.textContent = 'Back';
-  let backBtnHref;
-  if (isDraft) {
-    backBtnHref = 'drafts.html';
-  } else {
-    backBtnHref = 'published-posts.html';
-  }
-  backBtn.addEventListener('click', () => (window.location.href = backBtnHref));
+  const backBtn = createBackButton();
   fullPostContainer.appendChild(backBtn);
 
   renderFullPost(fullPostContainer);

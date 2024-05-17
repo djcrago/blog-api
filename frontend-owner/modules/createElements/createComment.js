@@ -1,5 +1,5 @@
 import { DateTime } from '../../node_modules/luxon/src/luxon.js';
-import createDeleteButton from './createDeleteButton.js';
+import createDeleteCommentButton from './createDeleteCommentButton.js';
 
 export default function createComment(post, comment) {
   const commentElement = document.createElement('div');
@@ -16,7 +16,7 @@ export default function createComment(post, comment) {
   body.textContent = comment.body;
   commentElement.appendChild(body);
 
-  const deleteBtn = createDeleteButton(post, comment._id);
+  const deleteBtn = createDeleteCommentButton(post, comment._id);
   commentElement.appendChild(deleteBtn);
 
   return commentElement;

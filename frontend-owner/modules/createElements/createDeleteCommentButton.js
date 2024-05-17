@@ -1,6 +1,6 @@
 import postDeleteComment from '../fetchRequests/postDeleteComment.js';
 
-export default function createDeleteButton(post, commentid) {
+export default function createDeleteCommentButton(post, commentid) {
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete Comment';
   deleteBtn.addEventListener('click', async () => {
