@@ -1,5 +1,5 @@
 import postSignUp from './modules/fetchRequests/postSignUp.js';
-import createErrorList from './modules/createErrorList.js';
+import createErrorList from './modules/createElements/createErrorList.js';
 
 const signUpForm = document.querySelector('#sign-up-form');
 const firstName = document.querySelector('#first_name');
