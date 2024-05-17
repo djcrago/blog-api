@@ -1,5 +1,5 @@
 export default async function postDeletePost(postid) {
-  const rawResponse = fetch(
+  const rawResponse = await fetch(
     `http://localhost:3000/posts/delete-post/${postid}/`,
     {
       method: 'POST',
@@ -9,7 +9,7 @@ export default async function postDeletePost(postid) {
     }
   );
 
-  const jsonResponse = rawResponse.json();
+  const jsonResponse = await rawResponse.json();
 
   return jsonResponse;
 }

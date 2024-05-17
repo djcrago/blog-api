@@ -1,5 +1,5 @@
 export default async function postCreatePost(fieldValues) {
-  const rawResponse = fetch('http://localhost:3000/posts/create-post', {
+  const rawResponse = await fetch('http://localhost:3000/posts/create-post', {
     method: 'POST',
     body: JSON.stringify({
       title: fieldValues.title,
@@ -12,7 +12,7 @@ export default async function postCreatePost(fieldValues) {
     },
   });
 
-  const jsonResponse = rawResponse.json();
+  const jsonResponse = await rawResponse.json();
 
   return jsonResponse;
 }
