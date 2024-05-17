@@ -63,7 +63,6 @@ export default function createEditDraftForm(post) {
       );
     }
   });
-
   editDraftForm.appendChild(submitBtn);
 
   return editDraftForm;

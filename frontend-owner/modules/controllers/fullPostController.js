@@ -1,10 +1,10 @@
 import createFullPost from '../createElements/createFullPost.js';
+import createPublishedButton from '../createElements/createPublishedButton.js';
 import createCommentsSection from '../createElements/createCommentsSection.js';
 import editDraftController from './editDraftController.js';
 import deleteDraftController from './deleteDraftController.js';
-import renderFullPost from '../renderViews/renderFullPost.js';
-import createPublishedButton from '../createElements/createPublishedButton.js';
 import createBackButton from '../createElements/createBackButton.js';
+import renderFullPost from '../renderViews/renderFullPost.js';
 
 export default async function fullPostController(post, isDraft = false) {
   const fullPostContainer = document.createElement('div');
@@ -22,13 +22,13 @@ export default async function fullPostController(post, isDraft = false) {
   }
 
   if (isDraft) {
-    const modifyFullPostContainer = document.createElement('div');
-    modifyFullPostContainer.classList.toggle('modify-full-post-container');
+    const modifyDraftContainer = document.createElement('div');
+    modifyDraftContainer.classList.toggle('modify-draft-container');
 
-    const modifyFullPost = document.createElement('p');
-    modifyFullPost.classList.toggle('modify-full-post');
-    modifyFullPost.textContent = 'Modify Draft';
-    modifyFullPostContainer.appendChild(modifyFullPost);
+    const modifyDraft = document.createElement('p');
+    modifyDraft.classList.toggle('modify-draft');
+    modifyDraft.textContent = 'Modify Draft';
+    modifyDraftContainer.appendChild(modifyDraft);
 
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.toggle('button-container');
@@ -48,9 +48,9 @@ export default async function fullPostController(post, isDraft = false) {
     });
     buttonContainer.appendChild(deleteBtn);
 
-    modifyFullPostContainer.appendChild(buttonContainer);
+    modifyDraftContainer.appendChild(buttonContainer);
 
-    fullPostContainer.appendChild(modifyFullPostContainer);
+    fullPostContainer.appendChild(modifyDraftContainer);
   }
 
   const backBtn = createBackButton(isDraft);

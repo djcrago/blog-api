@@ -4,7 +4,6 @@ export default function createBackButton(isDraft) {
   backBtn.textContent = 'Back';
 
   let backBtnHref;
-
   if (isDraft) backBtnHref = 'drafts.html';
   else backBtnHref = 'published-posts.html';
 

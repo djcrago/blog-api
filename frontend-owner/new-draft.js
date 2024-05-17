@@ -1,13 +1,13 @@
 import postCreatePost from './modules/fetchRequests/postCreatePost.js';
 
+const draftForm = document.querySelector('#draft-form');
+const title = document.querySelector('#title');
+const body = document.querySelector('#body');
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.token || localStorage.token === '') {
     window.location.href = './index.html';
   } else {
-    const draftForm = document.querySelector('#draft-form');
-    const title = document.querySelector('#title');
-    const body = document.querySelector('#body');
-
     draftForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 

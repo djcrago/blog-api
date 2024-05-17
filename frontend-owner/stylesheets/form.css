@@ -29,7 +29,8 @@ form {
   width: 45vw;
 }
 
-#draft-form > .form-group {
+#draft-form > .form-group,
+.edit-draft-form > .form-group {
   justify-content: center;
   align-items: flex-start;
 }
