@@ -48,6 +48,7 @@ header nav {
   font-size: 1.1rem;
   padding: 3px 6px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .navBtn:hover {
