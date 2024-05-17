@@ -1,4 +1,4 @@
-import postCreatePost from '../modules/fetchRequests/postCreatePost.js';
+import postCreatePost from './modules/fetchRequests/postCreatePost.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.token || localStorage.token === '') {
