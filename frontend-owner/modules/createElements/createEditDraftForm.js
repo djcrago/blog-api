@@ -1,5 +1,5 @@
 import postEditPost from '../fetchRequests/postEditPost.js';
-import fullPostController from '../fullPostController.js';
+import fullPostController from '../controllers/fullPostController.js';
 
 export default function createEditDraftForm(post) {
   const editDraftForm = document.createElement('form');

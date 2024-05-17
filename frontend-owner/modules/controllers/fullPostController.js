@@ -1,9 +1,9 @@
-import createFullPost from './createElemets/createFullPost.js';
-import createCommentsSection from './createElemets/createCommentsSection.js';
+import createFullPost from '../createElements/createFullPost.js';
+import createCommentsSection from '../createElements/createCommentsSection.js';
 import editDraftController from './editDraftController.js';
 import deleteDraftController from './deleteDraftController.js';
-import renderFullPost from './renderFullPost.js';
-import postPublished from './fetchRequests/postPublished.js';
+import renderFullPost from '../renderViews/renderFullPost.js';
+import postPublished from '../fetchRequests/postPublished.js';
 
 export default async function fullPostController(post, isDraft = false) {
   const fullPostContainer = document.createElement('div');

@@ -1,6 +1,6 @@
-import { DateTime } from 'luxon';
+import { DateTime } from '../../node_modules/luxon/src/luxon.js';
 import createPreviewBody from './createPreviewBody.js';
-import fullPostController from '../fullPostController.js';
+import fullPostController from '../controllers/fullPostController.js';
 
 export default function createPreview(post, isDraft) {
   const preview = document.createElement('div');

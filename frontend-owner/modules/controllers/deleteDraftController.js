@@ -1,4 +1,4 @@
-import postDeletePost from './fetchRequests/postDeletePost.js';
+import postDeletePost from '../fetchRequests/postDeletePost.js';
 import previewsController from './previewsController.js';
 
 export default async function deleteDraftController(post) {

@@ -1,5 +1,5 @@
-import { DateTime } from 'luxon';
-import fullPostController from '../fullPostController.js';
+import { DateTime } from '../../node_modules/luxon/src/luxon.js';
+import fullPostController from '../controllers/fullPostController.js';
 import getComments from '../fetchRequests/getComments.js';
 import postDeleteComment from '../fetchRequests/postDeleteComment.js';
 
