@@ -1,4 +1,4 @@
-export default function createBackButton() {
+export default function createBackButton(isDraft) {
   const backBtn = document.createElement('button');
   backBtn.textContent = 'Back';
 

@@ -37,7 +37,7 @@ export default async function fullPostController(post, isDraft = false) {
     fullPostContainer.appendChild(deleteBtn);
   }
 
-  const backBtn = createBackButton();
+  const backBtn = createBackButton(isDraft);
   fullPostContainer.appendChild(backBtn);
 
   renderFullPost(fullPostContainer);
