@@ -1,4 +1,4 @@
-import createErrorMessage from './modules/createErrorMessage.js';
+import createErrorMessage from './modules/createElements/createErrorMessage.js';
 import postLogin from './modules/fetchRequests/postLogin.js';
 
 const loginForm = document.querySelector('#login-form');

@@ -13,7 +13,6 @@ export default async function createCommentsSection(post) {
 
   comments.forEach((comment) => {
     const commentElement = createComment(post, comment);
-
     commentsSection.appendChild(commentElement);
   });
 
