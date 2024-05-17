@@ -27,7 +27,7 @@ export default async function fullPostController(post, isDraft = false) {
 
     const modifyFullPost = document.createElement('p');
     modifyFullPost.classList.toggle('modify-full-post');
-    modifyFullPost.textContent = 'Modify Post';
+    modifyFullPost.textContent = 'Modify Draft';
     modifyFullPostContainer.appendChild(modifyFullPost);
 
     const buttonContainer = document.createElement('div');
