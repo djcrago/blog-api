@@ -8,10 +8,8 @@ export default async function previewsController() {
   const previews = [];
 
   arrayOfPosts.forEach((post) => {
-    if (post.published) {
-      const preview = createPreview(post);
-      previews.push(preview);
-    }
+    const preview = createPreview(post);
+    previews.push(preview);
   });
 
   renderPreviews(previews);
