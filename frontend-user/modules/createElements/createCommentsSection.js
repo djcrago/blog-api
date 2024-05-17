@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime } from '../../node_modules/luxon/src/luxon.js';
 import createCommentForm from './createCommentForm.js';
 import getComments from '../fetchRequests/getComments.js';
 
