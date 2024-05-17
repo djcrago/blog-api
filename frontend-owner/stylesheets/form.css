@@ -29,6 +29,11 @@ form {
   width: 45vw;
 }
 
+#draft-form > .form-group {
+  justify-content: center;
+  align-items: flex-start;
+}
+
 label {
   font-weight: bold;
   font-size: 1.2rem;
@@ -43,7 +48,7 @@ input {
 }
 
 textarea {
-  width: 40vw;
+  width: 30vw;
   min-height: 45vh;
   padding: 8px;
   font-size: 1rem;
