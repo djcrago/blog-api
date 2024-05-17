@@ -14,6 +14,7 @@ export default function createCommentForm(post) {
   const body = document.createElement('textarea');
   body.classList.toggle('comment-body');
   body.name = 'body';
+  body.required = true;
   form.appendChild(body);
 
   const submit = document.createElement('button');

@@ -72,22 +72,6 @@ main {
   padding: 32px;
 }
 
-button {
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #000;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: lightgray;
-}
-
-button:active {
-  background-color: rgb(224, 224, 224);
-}
-
 #posts-container {
   display: flex;
   flex-direction: column;
@@ -171,6 +155,22 @@ h3 {
   padding: 8px;
 }
 
+button {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+button:active {
+  background-color: rgb(224, 224, 224);
+}
+
 .back-button {
   margin-top: auto;
   margin-bottom: 1vh;
@@ -186,8 +186,8 @@ footer {
   color: white;
 }
 
-footer > nav > a:link,
-footer > nav > a:visited {
+footer a:link,
+footer a:visited {
   background-color: #024950;
   color: white;
   text-decoration: underline;
