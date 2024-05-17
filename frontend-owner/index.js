@@ -1,47 +1,31 @@
+import createErrorMessage from './modules/createErrorMessage.js';
+import postLogin from './modules/fetchRequests/postLogin.js';
+
 const loginForm = document.querySelector('#login-form');
 const username = document.querySelector('#username');
 const password = document.querySelector('#password');
-const errors = document.querySelector('.errors');
 
-loginForm.addEventListener('submit', (event) => {
+loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  fetch('http://localhost:3000/users/login', {
-    method: 'POST',
-    body: JSON.stringify({
-      username: username.value,
-      password: password.value,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      if (json.message === 'user logged in successfully') {
-        localStorage.token = json.token;
-        localStorage.authorid = json.user._id;
-        window.location.href = 'published-posts.html';
-      } else {
-        while (errors.firstChild) {
-          errors.removeChild(errors.firstChild);
-        }
+  const errorMessages = document.querySelectorAll('.error');
+  for (let i = 0; i < errorMessages.length; i += 1) {
+    loginForm.removeChild(loginForm.lastChild);
+  }
 
-        const errorList = document.createElement('ul');
+  const fieldValues = {
+    username: username.value,
+    password: password.value,
+  };
 
-        if (json.errors) {
-          json.errors.forEach((error) => {
-            const errorItem = document.createElement('li');
-            errorItem.textContent = error.msg;
-            errorList.appendChild(errorItem);
-          });
-        } else {
-          const errorMessage = document.createElement('li');
-          errorMessage.textContent = json.message;
-          errorList.appendChild(errorMessage);
-        }
+  const loginResponse = await postLogin(fieldValues);
 
-        errors.appendChild(errorList);
-      }
-    });
+  if (loginResponse.message === 'user logged in successfully') {
+    localStorage.token = loginResponse.token;
+    localStorage.authorid = loginResponse.user._id;
+    window.location.href = 'published-posts.html';
+  } else {
+    const errorMessage = createErrorMessage(loginResponse.message);
+    loginForm.appendChild(errorMessage);
+  }
 });
