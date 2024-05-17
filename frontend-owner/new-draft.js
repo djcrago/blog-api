@@ -1,4 +1,4 @@
-import postCreatePost from './modules/fetchRequests/postCreatePost';
+import postCreatePost from './modules/fetchRequests/postCreatePost.js';
 
 const draftForm = document.querySelector('#draft-form');
 const title = document.querySelector('#title');
