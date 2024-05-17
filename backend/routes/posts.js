@@ -6,6 +6,8 @@ const comment_controller = require('../controllers/commentController');
 
 router.get('/', post_controller.posts);
 
+router.get('/public', post_controller.public_posts);
+
 router.post('/create-post', post_controller.create_post);
 
 router.post('/edit-post/:postid', post_controller.edit_post);

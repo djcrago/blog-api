@@ -17,6 +17,15 @@ module.exports.posts = [
   }),
 ];
 
+module.exports.public_posts = asyncHandler(async (req, res, next) => {
+  const allPosts = await Post.find({ published: true })
+    .sort({ date: -1 })
+    .populate('author')
+    .exec();
+
+  res.json(allPosts);
+});
+
 module.exports.create_post = [
   passport.authenticate('jwt', { session: false }),
 
