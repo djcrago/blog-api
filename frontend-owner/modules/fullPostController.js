@@ -17,7 +17,6 @@ export default async function fullPostController(post, isDraft = false) {
     fullPostContainer.appendChild(commentsSection);
   }
 
-  // Make sure user is properly authenticated first
   const publishOrNotBtn = document.createElement('button');
   if (isDraft) {
     publishOrNotBtn.textContent = 'Publish Post';
