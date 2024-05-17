@@ -1,4 +1,5 @@
 import fullPostController from '../controllers/fullPostController.js';
+import postCreateComment from '../fetchRequests/postCreateComment.js';
 
 export default function createCommentForm(post) {
   const formContainer = document.createElement('div');
@@ -20,23 +21,25 @@ export default function createCommentForm(post) {
   submit.textContent = 'Submit';
   form.appendChild(submit);
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/posts/${post._id}/create-comment`, {
-      method: 'POST',
-      body: JSON.stringify({
-        body: body.value,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        fullPostController(post);
-        console.log(json);
-      });
+    const fieldValues = {
+      body: body.value,
+    };
+
+    const createCommentResponse = await postCreateComment(
+      post._id,
+      fieldValues
+    );
+
+    if (createCommentResponse.message === 'comment created successfully') {
+      fullPostController(post);
+    } else {
+      alert(
+        'Comment Not Created: there was a server error, please try again later'
+      );
+    }
   });
 
   formContainer.appendChild(form);
