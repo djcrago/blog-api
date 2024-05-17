@@ -1,4 +1,4 @@
-import createEditDraftForm from './createEditDraftForm.js';
+import createEditDraftForm from './createElements/createEditDraftForm.js';
 import fullPostController from './fullPostController.js';
 import renderFullPost from './renderFullPost.js';
 

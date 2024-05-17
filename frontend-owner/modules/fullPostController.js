@@ -1,5 +1,5 @@
-import createFullPost from './createFullPost.js';
-import createCommentsSection from './createCommentsSection.js';
+import createFullPost from './createElemets/createFullPost.js';
+import createCommentsSection from './createElemets/createCommentsSection.js';
 import editDraftController from './editDraftController.js';
 import deleteDraftController from './deleteDraftController.js';
 import renderFullPost from './renderFullPost.js';

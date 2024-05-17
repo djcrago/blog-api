@@ -1,5 +1,5 @@
 import getPosts from './fetchRequests/getPosts.js';
-import createPreview from './createPreview.js';
+import createPreview from './createElements/createPreview.js';
 import renderPreviews from './renderPreviews.js';
 
 export default async function previewsController(areDrafts = false) {

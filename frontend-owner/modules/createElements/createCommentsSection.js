@@ -1,7 +1,7 @@
-import { DateTime } from '../node_modules/luxon/src/luxon.js';
-import fullPostController from './fullPostController.js';
-import getComments from './fetchRequests/getComments.js';
-import postDeleteComment from './fetchRequests/postDeleteComment.js';
+import { DateTime } from 'luxon';
+import fullPostController from '../fullPostController.js';
+import getComments from '../fetchRequests/getComments.js';
+import postDeleteComment from '../fetchRequests/postDeleteComment.js';
 
 export default async function createCommentsSection(post) {
   const commentsSection = document.createElement('div');
