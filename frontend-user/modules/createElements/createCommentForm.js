@@ -1,4 +1,4 @@
-import fullPostController from './fullPostController.js';
+import fullPostController from '../controllers/fullPostController.js';
 
 export default function createCommentForm(post) {
   const formContainer = document.createElement('div');

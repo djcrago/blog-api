@@ -1,6 +1,6 @@
-import { DateTime } from '../node_modules/luxon/src/luxon.js';
+import { DateTime } from 'luxon';
 import createCommentForm from './createCommentForm.js';
-import getComments from './getComments.js';
+import getComments from '../fetchRequests/getComments.js';
 
 export default async function createCommentsSection(post) {
   const commentsSection = document.createElement('div');

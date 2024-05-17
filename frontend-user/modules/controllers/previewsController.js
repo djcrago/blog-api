@@ -1,6 +1,6 @@
-import getPosts from './getPosts.js';
-import createPreview from './createPreview.js';
-import renderPreviews from './renderPreviews.js';
+import getPosts from '../fetchRequests/getPosts.js';
+import createPreview from '../createElements/createPreview.js';
+import renderPreviews from '../renderViews/renderPreviews.js';
 
 export default async function previewsController() {
   const arrayOfPosts = await getPosts();

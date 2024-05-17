@@ -1,4 +1,4 @@
-import { DateTime } from '../node_modules/luxon/src/luxon.js';
+import { DateTime } from 'luxon';
 import createPreviewBody from './createPreviewBody.js';
 import fullPostController from './fullPostController.js';
 

@@ -1,7 +1,7 @@
-import createFullPost from './createFullPost.js';
-import createCommentsSection from './createCommentsSection.js';
+import createFullPost from '../createElements/createFullPost.js';
+import createCommentsSection from '../createElements/createCommentsSection.js';
 import previewsController from './previewsController.js';
-import renderFullPost from './renderFullPost.js';
+import renderFullPost from '../renderViews/renderFullPost.js';
 
 export default async function fullPostController(post) {
   const fullPostContainer = document.createElement('div');
