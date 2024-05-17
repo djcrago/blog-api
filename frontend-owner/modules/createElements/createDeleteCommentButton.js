@@ -1,8 +1,10 @@
 import postDeleteComment from '../fetchRequests/postDeleteComment.js';
+import fullPostController from '../controllers/fullPostController.js';
 
 export default function createDeleteCommentButton(post, commentid) {
   const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Delete Comment';
+  deleteBtn.classList.toggle('delete');
+  deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', async () => {
     const deleteConfirmed = prompt(
       'This action cannot be undone. To delete this comment, type "Delete" and hit enter.'

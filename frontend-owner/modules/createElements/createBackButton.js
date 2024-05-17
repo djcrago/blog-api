@@ -1,5 +1,6 @@
 export default function createBackButton(isDraft) {
   const backBtn = document.createElement('button');
+  backBtn.classList.toggle('back-button');
   backBtn.textContent = 'Back';
 
   let backBtnHref;

@@ -13,28 +13,44 @@ export default async function fullPostController(post, isDraft = false) {
   const fullPost = createFullPost(post);
   fullPostContainer.appendChild(fullPost);
 
+  const publishOrNotBtn = createPublishedButton(post._id, isDraft);
+  fullPostContainer.appendChild(publishOrNotBtn);
+
   if (!isDraft) {
     const commentsSection = await createCommentsSection(post);
     fullPostContainer.appendChild(commentsSection);
   }
 
-  const publishOrNotBtn = createPublishedButton(post._id, isDraft);
-  fullPostContainer.appendChild(publishOrNotBtn);
-
   if (isDraft) {
+    const modifyFullPostContainer = document.createElement('div');
+    modifyFullPostContainer.classList.toggle('modify-full-post-container');
+
+    const modifyFullPost = document.createElement('p');
+    modifyFullPost.classList.toggle('modify-full-post');
+    modifyFullPost.textContent = 'Modify Post';
+    modifyFullPostContainer.appendChild(modifyFullPost);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.toggle('button-container');
+
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit Draft';
     editBtn.addEventListener('click', () => {
       editDraftController(post);
     });
-    fullPostContainer.appendChild(editBtn);
+    buttonContainer.appendChild(editBtn);
 
     const deleteBtn = document.createElement('button');
+    deleteBtn.classList.toggle('delete');
     deleteBtn.textContent = 'Delete Draft';
     deleteBtn.addEventListener('click', () => {
       deleteDraftController(post);
     });
-    fullPostContainer.appendChild(deleteBtn);
+    buttonContainer.appendChild(deleteBtn);
+
+    modifyFullPostContainer.appendChild(buttonContainer);
+
+    fullPostContainer.appendChild(modifyFullPostContainer);
   }
 
   const backBtn = createBackButton(isDraft);

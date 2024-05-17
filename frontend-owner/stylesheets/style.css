@@ -72,6 +72,22 @@ main {
   padding: 32px;
 }
 
+button {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+button:active {
+  background-color: rgb(224, 224, 224);
+}
+
 #posts-container {
   display: flex;
   flex-direction: column;
@@ -108,6 +124,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 3vh;
+  min-height: 65vh;
 }
 
 .full-post {
@@ -122,31 +139,98 @@ main {
   min-height: 30vh;
 }
 
-button {
-  padding: 8px;
-  font-size: 1rem;
-  cursor: pointer;
+h3 {
+  font-size: 1.5rem;
 }
 
+.published-btn {
+  background-color: #00eaff;
+  font-size: 1.1rem;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.3s;
+  transform: scale(1);
+}
+
+.published-btn:hover {
+  background-color: #00eaff;
+  transition: transform 0.3s;
+  transform: scale(1.2);
+}
+
+.published-btn:active {
+  background-color: #1cd2e2;
+  border: 1px solid yellow;
+  color: yellow;
+}
+
+.modify-full-post {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.modify-full-post-container,
 .comments {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1vh;
+  gap: 2vh;
   background-color: white;
   padding: 32px;
   border-radius: 8px;
-  width: 60vw;
+  width: 75vw;
+}
+
+.comment-container {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
 }
 
 .comment {
   display: flex;
   flex-direction: column;
-  gap: 0.5vh;
-  width: 50vw;
+  justify-content: center;
+  gap: 1vh;
+  width: 60vw;
   background-color: #f4f6f6;
   border-radius: 8px;
   padding: 8px;
+}
+
+.delete {
+  transition: all 0.3s;
+  color: darkred;
+  border: 1px solid darkred;
+  border-radius: 8px;
+}
+
+.delete:hover {
+  transition: all 0.3s;
+  color: black;
+  background-color: rgba(255, 0, 0, 0.659);
+  border: 1px solid red;
+}
+
+.delete:active {
+  transition: all 0s;
+  color: red;
+  background-color: white;
+  border: 1px solid red;
+}
+
+.back-button {
+  /* position: relative; */
+  margin-top: auto;
+  margin-bottom: 1vh;
 }
 
 footer {

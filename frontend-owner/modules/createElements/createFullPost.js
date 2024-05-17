@@ -4,7 +4,7 @@ export default function createFullPost(post) {
   const fullPost = document.createElement('div');
   fullPost.classList.toggle('full-post');
 
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.textContent = post.title;
   fullPost.appendChild(title);
 

@@ -6,7 +6,7 @@ export default function createPreview(post, isDraft) {
   const preview = document.createElement('div');
   preview.classList.toggle('preview');
 
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.textContent = post.title;
   preview.appendChild(title);
 
