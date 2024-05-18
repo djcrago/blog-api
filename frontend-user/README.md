@@ -7,3 +7,4 @@ A "public" route is accessed which only provides posts the author has published 
 Other aspects of this directory include:
 
 - Modularizing code for the sake of readability and clarity
+- Writing a custom function for working with dates

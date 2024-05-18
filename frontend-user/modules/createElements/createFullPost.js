@@ -1,4 +1,4 @@
-import { DateTime } from '../../node_modules/luxon/src/luxon.js';
+import processDateTime from '../renderViews/processDateTime.js';
 
 export default function createFullPost(post) {
   const fullPost = document.createElement('div');
@@ -10,7 +10,7 @@ export default function createFullPost(post) {
 
   const info = document.createElement('p');
   const author = `${post.author.first_name} ${post.author.last_name}`;
-  const date = DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
+  const date = processDateTime(post.date);
   info.textContent = `${author} - ${date}`;
   fullPost.appendChild(info);
 

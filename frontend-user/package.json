@@ -1,7 +1,7 @@
 {
   "name": "frontend-user",
   "version": "1.0.0",
-  "description": "",
+  "description": "This directory houses the user-facing web app where visitors can read and comment on posts written by the blog author.",
   "main": "index.js",
   "private": "true",
   "scripts": {
@@ -10,8 +10,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "luxon": "^3.4.4"
-  }
+  "type": "module"
 }
