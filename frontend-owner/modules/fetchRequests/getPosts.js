@@ -1,9 +1,12 @@
 export default async function fetchPosts() {
-  const rawResponse = await fetch('http://127.0.0.1:3000/posts', {
-    headers: {
-      Authorization: `bearer ${localStorage.token}`,
-    },
-  });
+  const rawResponse = await fetch(
+    'https://my-blog-api-cool-tree-347.fly.dev/posts',
+    {
+      headers: {
+        Authorization: `bearer ${localStorage.token}`,
+      },
+    }
+  );
 
   const arrayOfPosts = await rawResponse.json();
 

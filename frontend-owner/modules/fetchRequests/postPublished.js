@@ -4,7 +4,7 @@ export default async function postPublished(postid, isDraft = false) {
   else route = 'unpublish-post';
 
   const rawResponse = await fetch(
-    `http://localhost:3000/posts/${route}/${postid}/`,
+    `https://my-blog-api-cool-tree-347.fly.dev/posts/${route}/${postid}/`,
     {
       method: 'POST',
       headers: {

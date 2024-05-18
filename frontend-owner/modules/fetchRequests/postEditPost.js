@@ -1,6 +1,6 @@
 export default async function postEditPost(postid, fieldValues) {
   const rawResponse = await fetch(
-    `http://localhost:3000/posts/edit-post/${postid}/`,
+    `https://my-blog-api-cool-tree-347.fly.dev/posts/edit-post/${postid}/`,
     {
       method: 'POST',
       body: JSON.stringify({

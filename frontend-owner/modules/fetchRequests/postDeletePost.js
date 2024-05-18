@@ -1,6 +1,6 @@
 export default async function postDeletePost(postid) {
   const rawResponse = await fetch(
-    `http://localhost:3000/posts/delete-post/${postid}/`,
+    `https://my-blog-api-cool-tree-347.fly.dev/posts/delete-post/${postid}/`,
     {
       method: 'POST',
       headers: {

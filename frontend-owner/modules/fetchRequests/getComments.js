@@ -1,6 +1,6 @@
 export default async function fetchComments(postid) {
   const rawResponse = await fetch(
-    `http://127.0.0.1:3000/posts/${postid}/comments`,
+    `https://my-blog-api-cool-tree-347.fly.dev/posts/${postid}/comments`,
     {
       headers: {
         Authorization: `bearer ${localStorage.token}`,

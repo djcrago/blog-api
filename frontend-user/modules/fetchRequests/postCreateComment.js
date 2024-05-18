@@ -1,6 +1,6 @@
 export default async function postCreateComment(postid, fieldValues) {
   const rawResponse = await fetch(
-    `http://localhost:3000/posts/${postid}/create-comment`,
+    `https://my-blog-api-cool-tree-347.fly.dev/posts/${postid}/create-comment`,
     {
       method: 'POST',
       body: JSON.stringify({
