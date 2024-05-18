@@ -1,4 +1,4 @@
-import { DateTime } from '../../node_modules/luxon/src/luxon.js';
+import processDateTime from '../renderViews/processDateTime.js';
 import createDeleteCommentButton from './createDeleteCommentButton.js';
 
 export default function createComment(post, comment) {
@@ -9,9 +9,7 @@ export default function createComment(post, comment) {
   commentElement.classList.toggle('comment');
 
   const date = document.createElement('p');
-  const formattedDate = DateTime.fromISO(comment.date).toLocaleString(
-    DateTime.DATE_SHORT
-  );
+  const formattedDate = processDateTime(comment.date);
   date.textContent = formattedDate;
   commentElement.appendChild(date);
 
