@@ -1,8 +1,18 @@
-The main focus of this project was to create a backend api that would service multiple front-end web apps.
+# Blog Api
 
-The service provided is a blog api, where published posts, drafts, post comments, and users are stored on a database, accessed by the backend API, and sent as JSON responses to the fetch requests made by two front-end apps.
+This repository houses three connected projects that make up an example blog website. A backend API (the "backend" directory), a website where visitors can read and comment on blog posts (the "frontend-user" directory), and a website for the blog author to create, edit, and delete blog posts (the "frontend-owner" directory).
 
-The two front-end apps include:
+Live websites can be found here:
 
-- An app for people that want to read and comment of the posts
-- An app for the author of the posts to write, edit, and delete posts and delete comments.
+- For visitors: https://djcrago.github.io/blog-api-user/
+- For the author: https://djcrago.github.io/blog-api-owner/
+
+## Features
+
+View the "backend" directory here: https://github.com/djcrago/blog-api/tree/main/backend
+View the "frontend-user" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-user
+View the "frontend-owner" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-owner
+
+## License
+
+All projects are licensed under the ISC license.

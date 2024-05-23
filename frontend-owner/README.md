@@ -1,8 +1,20 @@
-This directory houses the author-facing (owner) web app where authors can read write, edit, and delete posts and delete comments.
+# Blog Api - Owner
 
-Authentication is utilized on every fetch request, whether GET or POST, so that unauthenticated clients can't simply travel to the correct url and access information. If such a client attempts to do so they will be redirected to the login page automatically.
+This repository houses an example blog website for the blog author to create, edit, and delete blog posts.
+The live website can be found here: https://djcrago.github.io/blog-api-owner/
 
-Other aspects of this directory include:
+Screenshot of Live Website:
+![Screenshot of website this repository houses](./website-screenshot.png?raw=true 'Website Screenshot')
 
-- Modularizing code for the sake of readability and clarity
-- Displaying any error messages on the screen that come back from the server
+This website is one of three connected projects. The other two projects include a backend API and a website where visitors can read and comment on blog posts.
+
+## Features
+
+- Code modularization for the sake of readability and clarity
+- A custom function for working with dates
+- Using a Model-View-Controller architecture to separate concerns
+- Authentication: clients must be properly logged in before any operation will execute
+
+## License
+
+The project is licensed under the ISC license.
