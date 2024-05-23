@@ -9,9 +9,9 @@ Live websites can be found here:
 
 ## Features
 
-View the "backend" directory here: https://github.com/djcrago/blog-api/tree/main/backend
-View the "frontend-user" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-user
-View the "frontend-owner" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-owner
+View the "backend" directory here: https://github.com/djcrago/blog-api/tree/main/backend.
+View the "frontend-user" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-user.
+View the "frontend-owner" directory here: https://github.com/djcrago/blog-api/tree/main/frontend-owner.
 
 ## License
 
