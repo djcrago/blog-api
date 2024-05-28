@@ -16,5 +16,9 @@ export default async function deleteDraftController(post) {
         'Post Not Deleted: there was a server error, please try again later'
       );
     }
+  } else {
+    alert(
+      'Post Not Deleted: make sure you correctly type the title, please try again'
+    );
   }
 }
